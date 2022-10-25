@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{442882F4-ADA7-4118-A612-2B9AF9EC178C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\objs\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\objs\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\objs\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\build\build.msvc\$(Platform)_$(Configuration)\objs\$(ProjectName)</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\include;..\..\include\common\brain;..\RPM\nudf\v2\inc;..\..\include\SDWL;marshal\include;CESDK\include;Transport\include;CESDK\client\stub\PEPMan\include;..\..\..\external\jsonformodernc++\single_include</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\..\libs\rmccore\windows\$(Platform)_$(Configuration);..\..\..\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>rmccore.lib;nudf.lib;</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\..\include;..\..\include\common\brain;..\RPM\nudf\v2\inc;..\..\include\SDWL;marshal\include;CESDK\include;Transport\include;CESDK\client\stub\PEPMan\include;..\..\..\external\jsonformodernc++\single_include</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\..\libs\rmccore\windows\$(Platform)_$(Configuration);..\..\..\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>rmccore.lib;nudf.lib;</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\include\common\brain;..\RPM\nudf\v2\inc;..\..\include\SDWL;marshal\include;CESDK\include;Transport\include;CESDK\client\stub\PEPMan\include;..\..\..\external\jsonformodernc++\single_include</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\..\libs\rmccore\windows\$(Platform)_$(Configuration);..\..\..\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>rmccore.lib;nudf.lib;</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\..\include\common\brain;..\RPM\nudf\v2\inc;..\..\include\SDWL;marshal\include;CESDK\include;Transport\include;CESDK\client\stub\PEPMan\include;..\..\..\external\jsonformodernc++\single_include</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\..\libs\rmccore\windows\$(Platform)_$(Configuration);..\..\..\build\lib\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>rmccore.lib;nudf.lib;</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CESDK\client\stub\CEM\src\cestring.cpp" />
+    <ClCompile Include="CESDK\client\stub\CEPrivate\src\CEPrivate.cpp" />
+    <ClCompile Include="CESDK\client\stub\CONN\src\conn.cpp" />
+    <ClCompile Include="CESDK\client\stub\EVAL\src\eval.cpp" />
+    <ClCompile Include="CESDK\client\stub\PEPMan\src\PEPMan.cpp" />
+    <ClCompile Include="Common\stringex.cpp" />
+    <ClCompile Include="Crypt\aes.cpp" />
+    <ClCompile Include="Crypt\basic.cpp" />
+    <ClCompile Include="Crypt\cert.cpp" />
+    <ClCompile Include="Crypt\md5.cpp" />
+    <ClCompile Include="Crypt\provider.cpp" />
+    <ClCompile Include="Crypt\sha.cpp" />
+    <ClCompile Include="PDP\pdp.cpp" />
+    <ClCompile Include="Marshal\src\marshal.cpp" />
+    <ClCompile Include="Network\http_client.cpp" />
+    <ClCompile Include="RegistryServiceEntry.cpp" />
+    <ClCompile Include="RPM\drvcore_mgr.cpp" />
+    <ClCompile Include="RPM\nxrmcorehlp.cpp" />
+    <ClCompile Include="SDLAPI.cpp" />
+    <ClCompile Include="SDRFiles.cpp" />
+    <ClCompile Include="SDRmcInstance.cpp" />
+    <ClCompile Include="SDRmLoginHttpRequest.cpp" />
+    <ClCompile Include="SDRmNXLFile.cpp" />
+    <ClCompile Include="SDRmTenant.cpp" />
+    <ClCompile Include="SDRmUser.cpp" />
+    <ClCompile Include="SDRNXLToken.cpp" />
+    <ClCompile Include="SDRPartialDownload.cpp" />
+    <ClCompile Include="SDRSecureFile.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Transport\src\transport.cpp" />
+    <ClCompile Include="Watermark\watermark.cpp" />
+    <ClCompile Include="Winutil\host.cpp" />
+    <ClCompile Include="Winutil\inifile.cpp" />
+    <ClCompile Include="Winutil\keym.cpp" />
+    <ClCompile Include="Winutil\securefile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\SDWL\RegistryServiceEntry.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLAPI.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLError.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLFiles.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLHttpRequest.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLInc.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLInstance.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLNXLFile.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLResult.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLTenant.h" />
+    <ClInclude Include="..\..\include\SDWL\SDLUser.h" />
+    <ClInclude Include="Common\macros.h" />
+    <ClInclude Include="Common\string.h" />
+    <ClInclude Include="Common\stringex.h" />
+    <ClInclude Include="Crypt\aes.h" />
+    <ClInclude Include="Crypt\basic.h" />
+    <ClInclude Include="Crypt\cert.h" />
+    <ClInclude Include="Crypt\md5.h" />
+    <ClInclude Include="Crypt\provider.h" />
+    <ClInclude Include="Crypt\sha.h" />
+    <ClInclude Include="Network\http_client.h" />
+    <ClInclude Include="RPM\drvcore_mgr.h" />
+    <ClInclude Include="RPM\nxrmcorehlp.h" />
+    <ClInclude Include="RPM\nxrmdrv.h" />
+    <ClInclude Include="RPM\rbtree.h" />
+    <ClInclude Include="SDRFiles.h" />
+    <ClInclude Include="SDRmcInstance.h" />
+    <ClInclude Include="SDRmLoginHttpRequest.h" />
+    <ClInclude Include="SDRmNXLFile.h" />
+    <ClInclude Include="SDRmTenant.h" />
+    <ClInclude Include="SDRmUser.h" />
+    <ClInclude Include="SDRNXLToken.h" />
+    <ClInclude Include="SDRPartialDownload.h" />
+    <ClInclude Include="SDRSecureFile.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Watermark\watermark.h" />
+    <ClInclude Include="Winutil\host.h" />
+    <ClInclude Include="Winutil\inifile.h" />
+    <ClInclude Include="Winutil\keym.h" />
+    <ClInclude Include="Winutil\securefile.h" />
+    <ClInclude Include="Winutil\tstdlibs.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

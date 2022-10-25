@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ServiceManager</RootNamespace>
+    <AssemblyName>nxrmtray</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppICON.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CustomControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(SolutionDir)bin\$(Configuration)\CustomControls.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp">
+      <HintPath>$(NLGITEXTERNALDIR)\CefSharp\CefSharp.Common.96.0.180\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core">
+      <HintPath>$(NLGITEXTERNALDIR)\CefSharp\CefSharp.Common.96.0.180\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Wpf">
+      <HintPath>$(NLGITEXTERNALDIR)\CefSharp\CefSharp.Wpf.96.0.180\lib\net452\CefSharp.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>$(NLGITEXTERNALDIR)\log4net\log4net-2.0.8\bin\net\4.5\release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(NLGITEXTERNALDIR)\Newtonsoft.Json\Json110r2\Bin\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>$(NLGITEXTERNALDIR)\system.data.sqlite.core\1.0.109.2\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>$(ProgramFiles(x86)))\Microsoft SDKs\Expression\Blend\.NETFramework\v4.5\Libraries\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="resources\languages\StringResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\style\MouseOverButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="resources\style\UnifiedButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\components\CustomSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\widgets\ProBarComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\widgets\ProBarComponent2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\chooseServer\ChooseServerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\InitializeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\LoginWindowEx.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\notifyWindow\view\NotifyWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="rmservmgr\ui\windows\PreferenceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServiceManagerApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="resources\languages\CultureStringInfo.cs" />
+    <Compile Include="rmservmgr\app\Config.cs" />
+    <Compile Include="rmservmgr\app\HeartBeater.cs" />
+    <Compile Include="rmservmgr\app\IHeartBeat.cs" />
+    <Compile Include="rmservmgr\app\recentNotification\INotifyEvent.cs" />
+    <Compile Include="rmservmgr\app\recentNotification\IRecentNotification.cs" />
+    <Compile Include="rmservmgr\app\recentNotification\MyRecentNotification.cs" />
+    <Compile Include="rmservmgr\app\TrayIconManager.cs" />
+    <Compile Include="rmservmgr\app\UIMediator.cs" />
+    <Compile Include="rmservmgr\app\user\IUser.cs" />
+    <Compile Include="rmservmgr\app\user\User.cs" />
+    <Compile Include="rmservmgr\common\components\NamedPipeClient.cs" />
+    <Compile Include="rmservmgr\common\components\NamedPipeServer.cs" />
+    <Compile Include="rmservmgr\common\components\NetworkStatus.cs" />
+    <Compile Include="rmservmgr\common\filemonitor\FileMonitor.cs" />
+    <Compile Include="rmservmgr\common\filemonitor\IMonitoredItem.cs" />
+    <Compile Include="rmservmgr\common\filemonitor\MonitoredItem.cs" />
+    <Compile Include="rmservmgr\common\helper\AsyncHelper.cs" />
+    <Compile Include="rmservmgr\common\helper\ClearRegistryFileRecord.cs" />
+    <Compile Include="rmservmgr\common\helper\GetBrowserDownloadPath.cs" />
+    <Compile Include="rmservmgr\common\helper\Helper.cs" />
+    <Compile Include="rmservmgr\common\helper\LoadAddInHelper.cs" />
+    <Compile Include="rmservmgr\common\helper\UriToBitmapImageConvert.cs" />
+    <Compile Include="rmservmgr\db\config\Config.cs" />
+    <Compile Include="rmservmgr\db\DBProvider.cs" />
+    <Compile Include="rmservmgr\db\DbVersionControl.cs" />
+    <Compile Include="rmservmgr\db\SqliteOpenHelper.cs" />
+    <Compile Include="rmservmgr\db\table\RecentNotificationDao.cs" />
+    <Compile Include="rmservmgr\db\table\RecentNotifyAppDao.cs" />
+    <Compile Include="rmservmgr\db\table\ServerDao.cs" />
+    <Compile Include="rmservmgr\db\table\UserDao.cs" />
+    <Compile Include="rmservmgr\sdk\Exception.cs" />
+    <Compile Include="rmservmgr\sdk\helper\CultureStringInfo.cs" />
+    <Compile Include="rmservmgr\sdk\helper\Utils.cs" />
+    <Compile Include="rmservmgr\sdk\internal\boundary.cs" />
+    <Compile Include="rmservmgr\sdk\internal\config.cs" />
+    <Compile Include="rmservmgr\sdk\internal\factory.cs" />
+    <Compile Include="rmservmgr\sdk\Session.cs" />
+    <Compile Include="rmservmgr\sdk\SkydrmException.cs" />
+    <Compile Include="rmservmgr\sdk\Tenant.cs" />
+    <Compile Include="rmservmgr\sdk\Type.cs" />
+    <Compile Include="rmservmgr\sdk\User.cs" />
+    <Compile Include="rmservmgr\ui\components\CustomSearchBox.xaml.cs">
+      <DependentUpon>CustomSearchBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\widgets\ProBarComponent.xaml.cs">
+      <DependentUpon>ProBarComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\widgets\ProBarComponent2.xaml.cs">
+      <DependentUpon>ProBarComponent2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\chooseServer\ChooseServerWindow.xaml.cs">
+      <DependentUpon>ChooseServerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\chooseServer\model\ChooseServerModel.cs" />
+    <Compile Include="rmservmgr\ui\windows\chooseServer\model\UrlDataModel.cs" />
+    <Compile Include="rmservmgr\ui\windows\InitializeWindow.xaml.cs">
+      <DependentUpon>InitializeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\LoginWindowEx.xaml.cs">
+      <DependentUpon>LoginWindowEx.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\notifyWindow\viewModel\NotifyWinViewModel.cs" />
+    <Compile Include="rmservmgr\ui\windows\notifyWindow\view\NotifyWin.xaml.cs">
+      <DependentUpon>NotifyWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\PreferenceWindow.xaml.cs">
+      <DependentUpon>PreferenceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\serviceManager\helper\Convert.cs" />
+    <Compile Include="rmservmgr\ui\windows\serviceManager\helper\DelegateCommand.cs" />
+    <Compile Include="rmservmgr\ui\windows\serviceManager\helper\MyEventCommand.cs" />
+    <Compile Include="rmservmgr\ui\windows\serviceManager\model\Applications.cs" />
+    <Compile Include="rmservmgr\ui\windows\serviceManager\model\Notifications.cs" />
+    <Compile Include="rmservmgr\ui\windows\serviceManager\viewModel\ServiceManagerViewModel.cs" />
+    <Compile Include="Startup.cs" />
+    <Page Include="rmservmgr\ui\windows\serviceManager\view\ServiceManagerWin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="ServiceManagerApp.xaml.cs">
+      <DependentUpon>ServiceManagerApp.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rmservmgr\ui\windows\serviceManager\view\ServiceManagerWin.xaml.cs">
+      <DependentUpon>ServiceManagerWin.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AppICON.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\TrayIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\TrayIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\skydrm_desktop_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\open_mainWin_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\open_browse_web.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\open_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\online_short_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\online_long_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\offline_long_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\offline_short_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\SkyDRM-White-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\SkyDRM-White-Logo%402x.png" />
+    <Resource Include="resources\icons\SkyDRM-White-Logo%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\cancel - white%402x.png" />
+    <Resource Include="resources\icons\cancel - white%403x.png" />
+    <Resource Include="resources\icons\cancel - white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\cancel - black%402x.png" />
+    <Resource Include="resources\icons\cancel - black%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\cancel - black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\cancel-gray%402x.png" />
+    <Resource Include="resources\icons\cancel-gray%403x.png" />
+    <Resource Include="resources\icons\cancel-gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\warn.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\about_skydrm_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\about_nextlabs_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\TrayIconBig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\fileTypeIcons\---.png" />
+    <Resource Include="resources\icons\fileTypeIcons\---_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\3DXML.png" />
+    <Resource Include="resources\icons\fileTypeIcons\3DXML_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\BMP.png" />
+    <Resource Include="resources\icons\fileTypeIcons\BMP_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\C.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CATPART.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CATPART_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CATSHAPE.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CATSHAPE_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CGR.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CGR_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CPP.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CPP_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CSV.png" />
+    <Resource Include="resources\icons\fileTypeIcons\CSV_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\C_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOC.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOCM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOCM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOCX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOCX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOC_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOTX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DOTX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DWG.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DWG_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DXF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\DXF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\ERR.png" />
+    <Resource Include="resources\icons\fileTypeIcons\ERR_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\EXE.png" />
+    <Resource Include="resources\icons\fileTypeIcons\EXE_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\EXT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\EXT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\File.png" />
+    <Resource Include="resources\icons\fileTypeIcons\File_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GDOC.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GDOC_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GDRA.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GDRA_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GIF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GIF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GSHE.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GSHE_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GSLI.png" />
+    <Resource Include="resources\icons\fileTypeIcons\GSLI_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\H.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HSF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HSF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HTM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HTML.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HTML_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HTM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HWF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\HWF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\H_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IGES.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IGES_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IGS.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IGS_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IPT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\IPT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JAVA.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JAVA_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JPG.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JPG_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JS.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JSON.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JSON_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JS_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\JT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\KEY.png" />
+    <Resource Include="resources\icons\fileTypeIcons\KEY_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\LOG.png" />
+    <Resource Include="resources\icons\fileTypeIcons\LOG_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\M.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MD.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MD_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MODEL.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MODEL_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MOV.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MOV_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MP3.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MP3_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MP4.png" />
+    <Resource Include="resources\icons\fileTypeIcons\MP4_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\M_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\NUMB.png" />
+    <Resource Include="resources\icons\fileTypeIcons\NUMB_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PAGE.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PAGE_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PAR.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PAR_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PDF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PDF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PNG.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PNG_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\POTM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\POTM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\POTX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\POTX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PPT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PPTX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PPTX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PPT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PROPERTIES.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PROPERTIES_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PRT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PRT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PSM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PSM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PY.png" />
+    <Resource Include="resources\icons\fileTypeIcons\PY_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RFT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RFT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RH.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RH_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RTF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\RTF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SLDASM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SLDASM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SLDPRT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SLDPRT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SQL.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SQL_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STEP.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STEP_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STL_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STL.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STP.png" />
+    <Resource Include="resources\icons\fileTypeIcons\STP_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SWIFT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\SWIFT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TIF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TIFF.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TIFF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TIF_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TXT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\TXT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VB.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VB_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VDS.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VDS_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VSD.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VSDX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VSDX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\VSD_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLS.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSB.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSB_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLSX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLS_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLTM.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLTM_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLTX.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLTX_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XLT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XML.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XML_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XMT_TXT.png" />
+    <Resource Include="resources\icons\fileTypeIcons\XMT_TXT_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\X_B.png" />
+    <Resource Include="resources\icons\fileTypeIcons\X_B_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\X_T.png" />
+    <Resource Include="resources\icons\fileTypeIcons\X_T_G.png" />
+    <Resource Include="resources\icons\fileTypeIcons\ZIP.png" />
+    <Resource Include="resources\icons\fileTypeIcons\ZIP_G.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\fileTypeStatus\offline.png" />
+    <Resource Include="resources\icons\fileTypeStatus\stop.png" />
+    <Resource Include="resources\icons\fileTypeStatus\uploading.png" />
+    <Resource Include="resources\icons\fileTypeStatus\uploadsuccessfully.png" />
+    <Resource Include="resources\icons\fileTypeStatus\waitupload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\icons\error.png" />
+    <Resource Include="resources\icons\warn.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <PostBuildEvent>
+      if not exist "$(SolutionDir)bin\$(Configuration)" mkdir "$(SolutionDir)bin\$(Configuration)"
+      copy /y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)bin\$(Configuration)"
+      copy /y "$(OutDir)$(TargetName).pdb" "$(SolutionDir)bin\$(Configuration)"
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,159 @@
+﻿<Window x:Class="CustomControls.windows.MyFolderConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomControls.windows"
+        xmlns:central="clr-namespace:CustomControls.components.CentralPolicy"
+        mc:Ignorable="d"
+        Title="SkyDRM" Height="700" Width="900"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        >
+    
+    <Window.Resources>
+        <local:IsAutoProtection2TagOpacity x:Key="IsAutoProtection2TagOpacity"></local:IsAutoProtection2TagOpacity>
+        <local:IsNoClassification2Visibility x:Key="IsNoClassification2Visibility"></local:IsNoClassification2Visibility>
+    </Window.Resources>
+    
+    
+    <Grid VerticalAlignment="Stretch">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="20,10,20,0" Orientation="Vertical">
+            <TextBlock  FontSize="13" FontFamily="Segoe UI"
+                           Text="{DynamicResource MyFolder_Choose}"/>
+            <Grid Margin="0,10,0,0" Height="35">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--file's folder-->
+                <TextBox Grid.Column="0" IsReadOnly="False">
+                    <TextBox.Template>
+                        <ControlTemplate TargetType="TextBox">
+                            <Grid>
+                                <Rectangle x:Name="rec" Fill="White" Opacity="0.8" Stroke="Gray"/>
+                                <TextBox x:Name="tbx_content" Margin="5,0,20,0" Background="Transparent" 
+                                             VerticalAlignment="Center" BorderThickness="0"
+                                             FontFamily="Lato" FontSize="15" 
+                                             Text="{Binding FolderPath}" ToolTip="{Binding FolderPath}"/>
+                                <Button x:Name="clearBtn" Margin="0,0,5,0" Cursor="Hand" HorizontalAlignment="Right" Click="ClearBtn_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Grid>
+                                                <Image Source="/CustomControls;component/resources/icons/cancel-gray@3x.png" Stretch="None" />
+                                                <ContentPresenter/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger SourceName="tbx_content" Property="Text" Value="" >
+                                    <Setter TargetName="clearBtn" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger SourceName="clearBtn" Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </TextBox.Template>
+                </TextBox>
+                <!--change dest-->
+                <Button Grid.Column="1" Margin="8,0,0,0" Width="100" Height="30" HorizontalAlignment="Left" Click="Browse_Button_Click" Content="{DynamicResource RpmP_UserRPM_Browse}"/>
+            </Grid>
+
+            <TextBlock Visibility="Hidden"
+                                   x:Name="Warning_Invalid_Path"
+                                   Text="{DynamicResource Warning_Invalid_Path}"
+                                   TextElement.Foreground="Red"
+                                   FontSize="13"
+                                   ></TextBlock>
+
+            <CheckBox Margin="0,20,0,0" 
+                      FontSize="14" 
+                      FontFamily="Segoe UI"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Left"
+                      Checked="CheckBox_Checked"
+                      Unchecked="CheckBox_Unchecked" 
+                      IsChecked="{Binding AutoProtection}"
+                      FontStyle="Normal"
+                      FontWeight="Bold"
+                      Content="{DynamicResource Auto_Protection}" />
+
+            <TextBlock  FontSize="13"
+                        Margin="0,5,0,0"
+                        FontFamily="Segoe UI" 
+                        FontStyle="Normal"
+                        Foreground="Gray"
+                        Text="{DynamicResource Auto_Protection_description}"/>
+
+            <TextBlock  FontSize="14"
+                        Margin="0,20,0,0"
+                        FontFamily="Segoe UI" 
+                        FontStyle="Normal"
+                        FontWeight="Bold"
+                        Text="{DynamicResource Classifications}"/>
+
+            <TextBlock  FontSize="13"
+                        Margin="0,5,0,0"
+                        FontFamily="Segoe UI" 
+                        FontStyle="Normal"
+                        Foreground="Gray"
+                        Text="{DynamicResource Classifications_description}"/>
+
+            <Grid>
+
+                <central:SelectCentralPolicy x:Name="page_Central"
+                                             Margin="10,10,0,0"
+                                             MaxHeight="300"
+                                             HorizontalAlignment="Left"
+                                             Grid.Row="0"
+                                             DescribeText="{DynamicResource Rights_Company_Text}"
+                                             WarningDescribeText="{DynamicResource Rights_Warning_Text}"
+                                             WarningVisibility="Visible"
+                                             Classification="{Binding Classification}"
+                                             AddInheritedClassification="{Binding SelectedClassification}"
+                                             SelectClassificationChanged="OnSelectClassificationChanged"
+                                             IsEnabled="{Binding AutoProtection}"
+                                             Opacity="{Binding AutoProtection , Converter={StaticResource IsAutoProtection2TagOpacity}}"
+                                             />
+
+                <TextBlock Visibility="{Binding TextNoclassification}"
+                       Text="{DynamicResource Warning_No_Classification}"
+                       TextElement.Foreground="Red"
+                       FontSize="13"
+                       ></TextBlock>
+
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            <Button Margin="0,0,0,10"
+                    Width="120"
+                    VerticalAlignment="Bottom"
+                    Click="Apply_Button_Click" 
+                    Command="local:Mfd_DataCommands.Apply"
+                    IsEnabled="{Binding BtnApplyIsEnable}"
+                    Content="{DynamicResource System_Btn_Apply}"
+                    Style="{StaticResource UnifiedBtnStyle_Positive}" />
+
+            <Button Margin="10,0,0,10" Width="120"
+                    VerticalAlignment="Bottom"
+                    Command="local:Mfd_DataCommands.Cancel"
+                    Content="{DynamicResource System_Btn_Cancle}"
+                    Style="{StaticResource UnifiedBtnStyle_Negtive}" />
+        </StackPanel>
+    </Grid>
+</Window>

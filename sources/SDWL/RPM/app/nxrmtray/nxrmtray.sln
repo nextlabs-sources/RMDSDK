@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nxrmtray", "nxrmtray.csproj", "{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8345AB6-6E3A-4189-BC3A-1CFF4A180759}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B1494C9-4B0E-49C1-BCA1-86CF9C618DFF}
+	EndGlobalSection
+EndGlobal

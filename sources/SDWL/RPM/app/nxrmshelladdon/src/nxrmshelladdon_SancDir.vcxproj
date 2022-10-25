@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CopyHookObj.cpp" />
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="FakeOverlayIcon.cpp" />
+    <ClCompile Include="nxrmshelladdon.cpp" />
+    <ClCompile Include="nxrmshelladdon_i.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CopyHookObj.rgs" />
+    <None Include="FakeOverlayIcon.rgs" />
+    <None Include="nxrmshelladdon.def" />
+    <None Include="nxrmshelladdon.rgs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="nxrmshelladdon.idl">
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">nxrmshelladdon_i.h</HeaderFileName>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="nxrmshelladdon.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\CopyHookObj.h" />
+    <ClInclude Include="..\inc\dllmain.h" />
+    <ClInclude Include="..\inc\FakeOverlayIcon.h" />
+    <ClInclude Include="..\inc\stdafx.h" />
+    <ClInclude Include="..\inc\targetver.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="lock.ico" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{CB0B638C-A35F-4539-BA7D-D56A21236C96}</ProjectGuid>
+    <Keyword>AtlProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\..\..\..\..\..\external\boost;..\3.1.13\inc;..\..\..\..\..\include\SDWL;..\..\..\..\..\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin_SancDir\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>bin_SancDir\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>..\3.1.13\lib\free;$(LibraryPath)</LibraryPath>
+    <TargetName>nxrmshelladdon32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>..\..\..\..\..\..\external\boost;..\3.1.13\inc;..\..\..\..\..\include\SDWL;..\..\..\..\..\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin_SancDir\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>bin_SancDir\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>..\3.1.13\lib\free;$(LibraryPath)</LibraryPath>
+    <TargetName>nxrmshelladdon</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\..\..\..\..\external\boost;..\3.1.13\inc;..\..\..\..\..\include\SDWL;..\..\..\..\..\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin_SancDir\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>bin_SancDir\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>..\3.1.13\lib\free;$(LibraryPath)</LibraryPath>
+    <TargetName>nxrmshelladdon32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>..\..\..\..\..\..\external\boost;..\3.1.13\inc;..\..\..\..\..\include\SDWL;..\..\..\..\..\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin_SancDir\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>bin_SancDir\$(Platform)\$(Configuration)\</IntDir>
+    <LibraryPath>..\3.1.13\lib\free;$(LibraryPath)</LibraryPath>
+    <TargetName>nxrmshelladdon</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;NEXTLABS_FEATURE_SKYDRM_SANCTUARY_DIR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\inc;..\..\..\nudf\v2\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>nxrmshelladdon_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>nxrmshelladdon_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>nxrmshelladdon_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)nxrmshelladdon.tlb</TypeLibraryName>
+      <DllDataFileName />
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <AdditionalOptions>/target NT60 %(AdditionalOptions)</AdditionalOptions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\nxrmshelladdon.def</ModuleDefinitionFile>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Version.lib;Iphlpapi.lib;legacy_stdio_definitions.lib;SDWRmcLib_SancDir.lib;libeay32.lib;Crypt32.lib;winhttp.lib;Bcrypt.lib;Ws2_32.lib;Wtsapi32.lib;Mpr.lib;Secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\build\build.msvc_SancDir\$(Platform)_$(Configuration.ToLower());..\..\..\..\..\..\external\openssl\$(Platform.ToLower().Replace("win32", "x86"))\lib\$(Configuration.ToLower());..\..\..\..\..\..\external\Boost\lib\$(Platform.ToLower().Replace("win32", "x86"))\$(Configuration.ToLower());%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+if not exist "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).pdb" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).lib" "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;_USRDLL;NEXTLABS_FEATURE_SKYDRM_SANCTUARY_DIR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\inc;..\..\..\nudf\v2\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>nxrmshelladdon_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>nxrmshelladdon_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>nxrmshelladdon_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)nxrmshelladdon.tlb</TypeLibraryName>
+      <DllDataFileName />
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <AdditionalOptions>/target NT60 %(AdditionalOptions)</AdditionalOptions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\nxrmshelladdon.def</ModuleDefinitionFile>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Version.lib;Iphlpapi.lib;legacy_stdio_definitions.lib;SDWRmcLib_SancDir.lib;libeay32.lib;Crypt32.lib;winhttp.lib;Bcrypt.lib;Ws2_32.lib;Wtsapi32.lib;Mpr.lib;Secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\build\build.msvc_SancDir\$(Platform)_$(Configuration.ToLower());..\..\..\..\..\..\external\openssl\$(Platform.ToLower().Replace("win32", "x86"))\lib\$(Configuration.ToLower());..\..\..\..\..\..\external\Boost\lib\$(Platform.ToLower().Replace("win32", "x86"))\$(Configuration.ToLower());%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+if not exist "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).pdb" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).lib" "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;NEXTLABS_FEATURE_SKYDRM_SANCTUARY_DIR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\inc;..\..\..\nudf\v2\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>nxrmshelladdon_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>nxrmshelladdon_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>nxrmshelladdon_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)nxrmshelladdon.tlb</TypeLibraryName>
+      <DllDataFileName />
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <AdditionalOptions>/target NT60 %(AdditionalOptions)</AdditionalOptions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\nxrmshelladdon.def</ModuleDefinitionFile>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Version.lib;Iphlpapi.lib;legacy_stdio_definitions.lib;SDWRmcLib_SancDir.lib;libeay32.lib;Crypt32.lib;winhttp.lib;Bcrypt.lib;Ws2_32.lib;Wtsapi32.lib;Mpr.lib;Secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\build\build.msvc_SancDir\$(Platform)_$(Configuration.ToLower());..\..\..\..\..\..\external\openssl\$(Platform.ToLower().Replace("win32", "x86"))\lib\$(Configuration.ToLower());..\..\..\..\..\..\external\Boost\lib\$(Platform.ToLower().Replace("win32", "x86"))\$(Configuration.ToLower());%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+if not exist "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).pdb" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).lib" "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;NDEBUG;_USRDLL;NEXTLABS_FEATURE_SKYDRM_SANCTUARY_DIR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\inc;..\..\..\nudf\v2\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <HeaderFileName>nxrmshelladdon_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>nxrmshelladdon_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>nxrmshelladdon_p.c</ProxyFileName>
+      <GenerateStublessProxies>true</GenerateStublessProxies>
+      <TypeLibraryName>$(IntDir)nxrmshelladdon.tlb</TypeLibraryName>
+      <DllDataFileName />
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <AdditionalOptions>/target NT60 %(AdditionalOptions)</AdditionalOptions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>..\..\..\..\..\include;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\nxrmshelladdon.def</ModuleDefinitionFile>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RegisterOutput>false</RegisterOutput>
+      <AdditionalDependencies>Version.lib;Iphlpapi.lib;legacy_stdio_definitions.lib;SDWRmcLib_SancDir.lib;libeay32.lib;Crypt32.lib;winhttp.lib;Bcrypt.lib;Ws2_32.lib;Wtsapi32.lib;Mpr.lib;Secur32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\..\..\..\build\build.msvc_SancDir\$(Platform)_$(Configuration.ToLower());..\..\..\..\..\..\external\openssl\$(Platform.ToLower().Replace("win32", "x86"))\lib\$(Configuration.ToLower());..\..\..\..\..\..\external\Boost\lib\$(Platform.ToLower().Replace("win32", "x86"))\$(Configuration.ToLower());%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+if not exist "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)" mkdir "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(OutDir)$(TargetName)$(TargetExt)" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).pdb" "$(SolutionDir)bin_SancDir\$(Platform)\$(Configuration)"
+copy /y "$(Outdir)$(TargetName).lib" "$(SolutionDir)lib_SancDir\$(Platform)\$(Configuration)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

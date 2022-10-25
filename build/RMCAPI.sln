@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDWRmcLib", "..\sources\SDWL\SDWRmcLib\SDWRmcLib.vcxproj", "{442882F4-ADA7-4118-A612-2B9AF9EC178C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E} = {B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDWRmcLib_forInstaller", "..\sources\SDWL\SDWRmcLib\SDWRmcLib_forInstaller.vcxproj", "{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E} = {B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDWRmcLib_SancDir", "..\sources\SDWL\SDWRmcLib\SDWRmcLib_SancDir.vcxproj", "{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E} = {B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nudf", "..\sources\SDWL\RPM\nudf\v2\src\nudf.vcxproj", "{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Debug|x64.ActiveCfg = Debug|x64
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Debug|x64.Build.0 = Debug|x64
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Debug|x86.ActiveCfg = Debug|Win32
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Debug|x86.Build.0 = Debug|Win32
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Release|x64.ActiveCfg = Release|x64
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Release|x64.Build.0 = Release|x64
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Release|x86.ActiveCfg = Release|Win32
+		{442882F4-ADA7-4118-A612-2B9AF9EC178C}.Release|x86.Build.0 = Release|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Debug|x64.ActiveCfg = Debug|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Debug|x86.ActiveCfg = Debug|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Debug|x86.Build.0 = Debug|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Release|x64.ActiveCfg = Release|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Release|x86.ActiveCfg = Release|Win32
+		{CCDDDA98-D34B-48AF-A348-ECEF9676BD8D}.Release|x86.Build.0 = Release|Win32
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Debug|x64.ActiveCfg = Debug|x64
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Debug|x64.Build.0 = Debug|x64
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Debug|x86.ActiveCfg = Debug|Win32
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Debug|x86.Build.0 = Debug|Win32
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Release|x64.ActiveCfg = Release|x64
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Release|x64.Build.0 = Release|x64
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Release|x86.ActiveCfg = Release|Win32
+		{B85C9FF7-F45E-4DC8-9415-FD1CCA2AA54E}.Release|x86.Build.0 = Release|Win32
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Debug|x64.ActiveCfg = Debug|x64
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Debug|x64.Build.0 = Debug|x64
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Debug|x86.ActiveCfg = Debug|Win32
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Debug|x86.Build.0 = Debug|Win32
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Release|x64.ActiveCfg = Release|x64
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Release|x64.Build.0 = Release|x64
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Release|x86.ActiveCfg = Release|Win32
+		{ACDBF120-5110-4DC4-86E9-705FD55AF3DC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

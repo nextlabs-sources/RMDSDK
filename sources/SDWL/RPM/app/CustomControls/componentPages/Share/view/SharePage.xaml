@@ -1,0 +1,337 @@
+﻿<Page x:Class="CustomControls.pages.Share.SharePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomControls.pages.Share"
+      xmlns:loadingBar="clr-namespace:CustomControls.components"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="SharePage">
+
+    <Page.Resources>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="5" SnapsToDevicePixels="True" Background="#F2F3F5" >
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="#F2F2F2"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="#F2F3F5"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#34994C"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F2F3F5"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <local:BackgroundStatusConverter x:Key="BSC"/>
+        <local:TextForegroundStatusConverter x:Key="TFSC"/>
+        <local:WatermarkVisibleConverter x:Key="WMVC"/>
+        <local:TipInfoVisibleConverter x:Key="TPINFC"/>
+        <local:RemaingLengthForegroundConverter x:Key="RLFGC"/>
+        <local:ShareTextForegroundConverter x:Key="STFC"/>
+        <local:ProBarVisibleConverter x:Key="PBVC"/>
+        <local:DescriptionVisibleConverter x:Key="DVC"/>
+        <local:DefDescriptionVisibleConverter x:Key="DDVC"/>
+        <local:DescriptionTextConverter x:Key="DTC"/>
+        <local:ShareButtonEnabled x:Key="SBEC"/>
+        <local:CalculateRemaingLengthByCurrentText x:Key="CCRLC"/>
+        <local:CancelBtnVisibleConverter x:Key="CABTV"/>
+        <local:ShareBtnVisibleConverter x:Key="SHBTV"/>
+        <local:CloseBtnVisibleConverter x:Key="CLBTV"/>
+        <local:CommentVisibleConverter x:Key="CMTV"/>
+    </Page.Resources>
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Center" FontFamily="Lato" FontSize="22" Margin="0,20,0,0" Text="{Binding OperationTitle}"/>
+
+                <Border BorderBrush="#B7DBAC" BorderThickness="1" Margin="180,18,180,0" CornerRadius="2">
+                    <!--FileName contents here-->
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Height="auto" MinHeight="40" MaxHeight="80">
+                        <StackPanel VerticalAlignment="Center">
+                            <!-- FileName contents here -->
+                            <TextBlock Name="fileNameBlock" Margin="10,5,10,5" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#2F80ED" FontSize="16" TextWrapping="Wrap" Text="{Binding FileName}"/>
+                        </StackPanel>
+
+                    </ScrollViewer>
+                </Border>
+
+                <Grid  Margin="190,4,190,0">
+                    <TextBlock 
+                           FontFamily="Roboto"
+                           FontSize="11"
+                           MaxHeight="40"
+                           TextWrapping="Wrap" 
+                           Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter= {StaticResource DTC}}"
+                           Visibility="{Binding Path=Status, Converter= {StaticResource DVC}}"
+                           Foreground="{Binding Path=Status, Converter= {StaticResource STFC}}">
+
+                    </TextBlock>
+
+                    <TextBlock
+                           FontFamily="Roboto"
+                           FontSize="11"
+                           MaxHeight="40"
+                           TextWrapping="Wrap"
+                           Visibility="{Binding Path=Status ,Converter= {StaticResource DDVC}}"
+                        >
+                    <Run Text="{DynamicResource SharePage_Title_Description}"/>
+                    <Run Foreground="#2F80ED" Text="{DynamicResource SharePage_Title_SubDescription}"/>
+                    </TextBlock>
+
+                </Grid>
+
+
+                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center" FontSize="17" FontFamily="segoe ui" FontWeight="DemiBold" LineHeight="20" Foreground="#4F4F4F" Text="{DynamicResource Rights_Apply_Text}"></TextBlock>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="180,15,180,0" Background="#F2F2F2" >
+                    <ListBox Name="rightsDisplayBoxes" 
+                             ItemsSource="{Binding Rights}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                             SelectionMode="Extended"
+                             BorderBrush="#F2F3F5"
+                             Background="#F2F2F2"
+                             HorizontalAlignment="Center">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" IsItemsHost="True"></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type local:RightsItem}" >
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                    <Image Source="{Binding Path=Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="68" Width="68"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Rights}" FontFamily="Lato" FontSize="14" Foreground="Black"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <!--Draw divide line-->
+                    <!--Divide line container-->
+                    <!--<StackPanel HorizontalAlignment="Center" Name="DivideLine" Margin="10,0,10,0"/>-->
+                    <!--<Line HorizontalAlignment="Center" Margin="0,20,0,0" X1="0" Y1="0" X2="465" Y2="0" Stroke="#BDBDBD" StrokeThickness="1"/>-->
+                    <Separator Width="1000" Margin="10,0,10,0"></Separator>
+
+                    <StackPanel x:Name="WatermarkPanel" Orientation="Horizontal" Margin="10,5,0,0" Visibility="{Binding Path=Rights,Converter={StaticResource WMVC}}">
+                        <TextBlock VerticalAlignment="Center" FontFamily="Lato" FontSize="12" Foreground="#494949" Text="{DynamicResource Label_WaterMark}"></TextBlock>
+                        <TextBlock Name="WatermarkValue" VerticalAlignment="Center" Margin="6,0,6,0" FontFamily="Lato" FontSize="12" TextWrapping="Wrap" MaxWidth="405" Foreground="#828282" Text="{Binding Watermark}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="10,4,0,11">
+                        <TextBlock VerticalAlignment="Center" FontFamily="Lato" FontSize="12" Foreground="#494949" Padding="0,0,0,0" Text="{DynamicResource Label_Validity}"></TextBlock>
+                        <TextBlock Name="ValidityValue" VerticalAlignment="Center" Margin="6,0,6,0" FontFamily="Lato" FontSize="12" Foreground="#828282" Text="{Binding Validity}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Name="ShareWithTitleTB" Margin="0,10,0,5" HorizontalAlignment="Center" Foreground="Black" FontSize="14" FontFamily="Roboto" Text="{DynamicResource Page_Share_ShareWith}"></TextBlock>
+
+                <StackPanel Orientation="Horizontal" Margin="180,0,140,0">
+                    <TextBox Name="emailInputTB" HorizontalAlignment="Left" Width="625" Height="28">
+                        <!--changed the template using ControlTemplate-->
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Grid>
+                                    <Rectangle x:Name="rec" Opacity="0.8" Stroke="#E0E0E0"/>
+
+                                    <TextBlock x:Name="tbx_hint" FontFamily="Roboto" FontSize="12" Text="{DynamicResource Page_Share_EnterText}" Opacity="0.5" Margin="10,0,0,0" 
+                                               VerticalAlignment="Center" Visibility="Collapsed"/>
+
+                                    <TextBox x:Name="tbx_content" Background="Transparent" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0" 
+                                             Text="{Binding Path=Text, ElementName=emailInputTB, Mode=TwoWay}" FontSize="13" Height="20"
+                                             InputMethod.IsInputMethodEnabled="False" 
+                                             TextChanged="EmailInputTB_TextChanged" PreviewKeyDown="EmailInput_KeyDown"/>
+                                </Grid>
+
+                                <!--Control the visible and hide by controlTemplate Trigger.-->
+                                <ControlTemplate.Triggers>
+                                    <Trigger SourceName="tbx_content" Property="Text" Value="" >
+                                        <Setter TargetName="tbx_hint" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+
+                                    <!--<Trigger SourceName="tbx_content" Property="IsFocused" Value="true">
+                                    <Setter TargetName="tbx_hint" Property="Visibility" Value="Hidden"/>
+                                    <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                                </Trigger>-->
+
+                                    <!--<Trigger SourceName="tbx_content" Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                                </Trigger>-->
+
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+                    <Image x:Name="Ig_outlookEmai" Margin="10,0,0,0" Height="30" Width="30" 
+                           Stretch="Fill" Cursor="Hand"
+                           Source="/CustomControls;component/resources/icons/Icon_add_email.png"
+                           MouseLeftButtonDown="On_GetOutlookEmail_Btn"/>
+                </StackPanel>
+
+
+                <!--This is the email container to show shared with lists-->
+                <ItemsControl Name="emailListsControl"
+                              ItemsSource="{Binding Emails}"
+                              Margin="180,12,180,0" MaxHeight="70">
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <Border
+                                BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                Padding="{TemplateBinding Control.Padding}"
+                                BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                Background="{TemplateBinding Panel.Background}"
+                                SnapsToDevicePixels="True">
+                                <ScrollViewer Padding="{TemplateBinding Control.Padding}" VerticalScrollBarVisibility="Auto">
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding 
+                                               UIElement.SnapsToDevicePixels}"/>
+                                </ScrollViewer>
+                            </Border>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  Name="emailName" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:EmailItem}">
+                            <Border Padding="3">
+                                <WrapPanel>
+                                    <Border  Background="{Binding Path=EmailStatus,Converter={StaticResource BSC}}" BorderThickness="1" CornerRadius="4" Margin="0,0,5,5" >
+                                        <StackPanel  Orientation="Horizontal" Width="auto" MaxWidth="470">
+                                            <TextBlock Margin="5,5,0,5" Foreground="{Binding Path=EmailStatus,Converter={StaticResource TFSC}}" Text="{Binding Path=Emails}" ToolTip="{Binding Path=Emails}" MaxWidth="430" TextTrimming="CharacterEllipsis"></TextBlock>
+                                            <Image Source="/CustomControls;component/resources/icons/icon_delete.png" Margin="10,0,5,0" MouseLeftButtonUp="DeleteEmailItem_MouseLeftButtonUp" Tag="{Binding Path=Emails}"></Image>
+                                        </StackPanel>
+                                    </Border>
+                                </WrapPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+
+                <StackPanel Name="StackComment" Margin="180,10,180,0" Visibility="{Binding Path=Status ,Converter={StaticResource CMTV} }">
+                    <TextBlock HorizontalAlignment="Center" Foreground="Black" FontSize="14" FontFamily="Roboto" Margin="0,0,0,5">                     
+                        <Run Text="{DynamicResource Page_Share_Comment}"></Run>
+                        <Run Foreground="#BDBDBD" Text="{DynamicResource Page_Share_Optional}"></Run>
+                    </TextBlock>
+                    <Border   BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="3" >
+                        <TextBox Name="commentTB" BorderThickness="0">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="TextBox">
+                                    <Grid>
+                                        <Rectangle x:Name="rec" Opacity="0.8" Stroke="#E0E0E0"/>
+
+                                        <TextBlock x:Name="tbx_hint" FontFamily="Roboto" FontSize="12" Height="60" Text="{DynamicResource Page_Share_Comment_Text}" Opacity="0.5" Margin="10,10,10,10"
+                                                 VerticalAlignment="Center" Visibility="Collapsed"/>
+
+                                        <TextBox x:Name="tbx_content" Background="Transparent" BorderThickness="0" 
+                                                 Text="{Binding Path=Text, ElementName=commentTB, Mode=TwoWay}" FontSize="13" Height="60" TextWrapping="Wrap"
+                                                 InputMethod.IsInputMethodEnabled="False" 
+                                                 TextChanged="commentTB_TextChanged"/>
+                                    </Grid>
+                                    <!--Control the visible and hide by controlTemplate Trigger.-->
+                                    <ControlTemplate.Triggers>
+                                        <Trigger SourceName="tbx_content" Property="Text" Value="" >
+                                            <Setter TargetName="tbx_hint" Property="Visibility" Value="Visible"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                    </Border>
+
+                    <!--Prompt info & input lengh-->
+                    <DockPanel>
+                        <!--Tip info-->
+                        <TextBlock x:Name="Tb_PromptInfo" Text="Comments string exceeds 250 characters." Visibility="{Binding ElementName=commentTB, Path=Text, Converter={StaticResource TPINFC}}" Foreground="Red" Margin="0,0,0,0"/>
+                        <!--Input Length-->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock x:Name="TB_RemaingLength" 
+                                       Text="{Binding ElementName=tbx_content, Path=Text, Converter={StaticResource CCRLC}}" 
+                                       Foreground="{Binding ElementName=commentTB, Path=Text, Converter={StaticResource RLFGC}}" />
+                            <TextBlock x:Name="ToalALength" Text="/250"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+
+
+                <StackPanel Name="ShareBtPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,30,0,27">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}" x:Key="ShareButtonStyle">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0.5,1">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Offset="0.0" Color="#3B9C4E" />
+                                            <GradientStop Offset="1.0" Color="#68B159" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="FontSize" Value="14"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Button Visibility="{Binding Path=Status,Converter={StaticResource SHBTV}}" 
+                            Style="{StaticResource UnifiedBtnStyle_Positive}"
+                            BorderBrush="#3B9C4E" 
+                            Click="Button_Ok" 
+                            IsEnabled="{Binding Path = Status,Converter={StaticResource SBEC}}" 
+                            Content="{DynamicResource Page_Share_Btn_Share}"/>
+
+                    <Button Visibility="{Binding Path=Status ,Converter={StaticResource CABTV}}" 
+                            Margin="12,0,0,0" 
+                            Name="CancelShare" 
+                            BorderBrush="#9FA3A7"
+                            BorderThickness="1"
+                            Click="Button_Cancel" 
+                            Style="{StaticResource UnifiedBtnStyle_Negtive}" 
+                            Content="{DynamicResource Windows_Btn_Cancel}"/>
+
+                    <Button  Visibility="{Binding Path = Status ,Converter={StaticResource CLBTV}}" 
+                             Style="{StaticResource UnifiedBtnStyle_Positive}" 
+                             BorderBrush="#3B9C4E"
+                             Click="Button_Cancel" 
+                             Content="{DynamicResource Windows_Btn_Close}"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+        <!--For  protect progress ui display-->
+        <Grid x:Name="GridProBar" Background="LightGray" Opacity="0.5" Visibility="{Binding Path= Status,Converter={StaticResource PBVC}}">
+
+            <!--For loading progress background-->
+            <loadingBar:ProgressBar/>
+
+        </Grid>
+
+    </Grid>
+</Page>

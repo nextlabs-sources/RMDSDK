@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<REGISTER>
+    <TENANTID>skydrm.com</TENANTID>
+    <SERVER>https://r.skydrm.com</SERVER>
+    <PLATFORM>Win-64bit</PLATFORM>
+    <LANGUAGE>0x0409</LANGUAGE>
+    <AUTHN>
+        <TYPE>external</TYPE>
+    </AUTHN>
+</REGISTER>

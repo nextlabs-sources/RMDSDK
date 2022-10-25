@@ -1,0 +1,73 @@
+;
+; nxrmvhd.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+DriverPackageType=KernelService
+Class=DiskDrive
+ClassGuid= {4d36e967-e325-11ce-bfc1-08002be10318}
+Provider=%ManufacturerName%
+CatalogFile=nxrmvhd.cat
+DriverVer=
+
+[DestinationDirs]
+DefaultDestDir = 12
+nxrmvhd.DriverFiles = 12
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = nxrmvhd.DriverFiles
+
+[DefaultInstall.Services]
+AddService          = %ServiceName%,,nxrmvhd.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles            = nxrmvhd.DriverFiles
+
+[DefaultUninstall.Services]
+DelService          = %ServiceName%
+
+
+
+;;
+;; Services Section
+;;
+
+[nxrmvhd.Service]
+DisplayName      = %ServiceName%
+ServiceBinary    = %12%\%DriverName%.sys        ;%windir%\system32\drivers\
+ServiceType      = 1                            ;SERVICE_KERNEL_DRIVER
+StartType        = 1                            ;SERVICE_SYSTEM_START
+ErrorControl     = 1                            ;SERVICE_ERROR_NORMAL
+
+
+;;
+;; Copy Files
+;;
+
+[nxrmvhd.DriverFiles]
+%DriverName%.sys,,,6
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+nxrmvhd.sys = 1,,
+
+
+[Strings]
+ManufacturerName="NextLabs, Inc."
+ClassName=""
+DiskName="NextLab VHD Source Disk"
+DriverName="nxrmvhd"
+ServiceName="nxrmvhd"
+ServiceDescription="NextLab Virtual Disk Driver"

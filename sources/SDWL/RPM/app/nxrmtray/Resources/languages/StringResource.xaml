@@ -1,0 +1,102 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ServiceManager.resources.languages"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--Note-->
+    <!--if need white space,should use  &#160; or &#x0020;  .If have multi-white space, add reference xml:space="preserve" -->
+    <!--if need newline, should use  &#13; or &#x000A;  .And must add reference xml:space="preserve"-->
+    <!--&#13; is \r-->
+    <!--&#x000A; is \n-->
+
+
+    <!--****************************All strings in background code***********************-->
+    <!--****************************All strings in .cs***********************-->
+
+    <!--**************************************************Notice*******************************************************-->
+    <!--* First step, Define string in this area.(Communal strings in front, the other strings are sorted separately) *-->
+    <!--* Second step, Define static string and use static void 'CommonUtils.ApplicationFindResource("Key")' -     *-->
+    <!--*   -in CultureStringInfo.cs .And It is best to keep the variable names in the same order as this area.           *-->
+    <!--* Third step, Use CultureStringInfo field get string in your .cs file                                                                   *-->
+    <!--****************************************************************************************************************-->
+
+    <!--Tray Text-->
+    <sys:String x:Key="Tray_SkyDRM">SkyDRM</sys:String>
+    <sys:String x:Key="Tray_Text">NextLabs SkyDRM</sys:String>
+    <sys:String x:Key="Tray_Text_User">User:</sys:String>
+    <sys:String x:Key="Tray_Text_Not_Sign_in">Not signed in</sys:String>
+    
+    <!--Tray MenuItem for background-->
+    <sys:String x:Key="Tray_MenuItem_About">About</sys:String>
+    <sys:String x:Key="Tray_MenuItem_Login">Log in</sys:String>
+    <sys:String x:Key="Tray_MenuItem_Logout">Log out</sys:String>
+    <sys:String x:Key="Tray_MenuItem_Exit">Exit</sys:String>
+
+    <!--ChooseServer window-->
+    <sys:String x:Key="ChooseServerWin_CheckUrl_Notify_UrlEmpty">Please input correct server address!</sys:String>
+    <sys:String x:Key="ChooseServerWin_CheckUrl_Notify_NetDisconnect">Network is disconnected!</sys:String>
+    <sys:String x:Key="ChooseServerWin_CheckUrl_Notify_UrlError">Please input correct server address!</sys:String>
+    <sys:String x:Key="ChooseServerWin_CheckUrl_Notify_NetworkOrUrlError">Please input correct server address!</sys:String>
+    
+    <!--ServiceManage Window-->
+    <sys:String x:Key="ServiceManageWin_Status_Online">ONLINE</sys:String>
+    <sys:String x:Key="ServiceManageWin_Status_Offline">OFFLINE</sys:String>
+
+    <sys:String x:Key="ServiceManageWin_All_Title">All</sys:String>
+
+    <sys:String x:Key="ServiceManageWin_All_CheckBox">(Select All)</sys:String>
+    <sys:String x:Key="ServiceManageWin_All_Search_CheckBox">(Select All Search Results)</sys:String>
+
+    <sys:String x:Key="ServiceManageWin_One_Month">One month ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_One_Week">One week ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Two_Weeks">Two weeks ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Day_Ago">day ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Days_Ago">days ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Hour_Ago">hour ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Hours_Ago">hours ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Minute_Ago">minute ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Minutes_Ago">minutes ago</sys:String>
+    <sys:String x:Key="ServiceManageWin_Just_Now">Just now</sys:String>
+
+    <!--File Monitor-->
+    <sys:String x:Key="FileMonitor_Deny_Edit">You do not have permission to edit and save the NXL file.</sys:String>
+
+    <!--Preference Window-->
+    <sys:String x:Key="PreferenceWin_SetRPMSystemFolder">Failed to set system storage location.</sys:String>
+    <sys:String x:Key="PreferenceWin_SetRPMPathInvalid">The folder path is invalid.</sys:String>
+    <sys:String x:Key="PreferenceWin_SetRPMFailed">Failed to set SkyDRM folder. Please contact your system administrator for further help.</sys:String>
+    <sys:String x:Key="PreferenceWin_GetRPMFailed">The default storage location is invalid, and it is removed.</sys:String>
+    <sys:String x:Key="PreferenceWin_Remove_RPMFailed">Failed to remove SkyDRM folder. Please contact your system administrator for further help.</sys:String>
+    <sys:String x:Key="PreferenceWin_MyFolder_Is_In_Use">Unable to perform the operation, Folder or file is in use or is open in another program.</sys:String>
+
+
+    <sys:String x:Key="PreferenceWin_ResetRPMFailed_For_Common">Failed to reset '{0}' to regular folder.</sys:String>
+
+    <!--***********************************All strings in UI code*****************************-->
+    <!--***********************************All strings in .xaml*****************************-->
+
+    <!--*****************************************Notice*****************************************************************-->
+    <!--* First step, Define string in this area.(Communal strings in front, the other strings are sorted separately) *-->
+    <!--* Second step, Use {DynamicResource Key} in your .xaml file                                                                           *-->
+    <!--*****************************************************************************************************************-->
+    
+    <!--ServiceManageWindow.xaml-->
+    <sys:String x:Key="ServiceManageWin_Btn_Open_SkyDRM">Open SkyDRM DESKTOP</sys:String>
+    <sys:String x:Key="ServiceManageWin_Btn_Open_Skydrm_Web">Open SkyDRM Web</sys:String>
+    <sys:String x:Key="ServiceManageWin_Menu_Options">Menu Options</sys:String>
+    <sys:String x:Key="ServiceManageWin_contextMenu_Header_About">About</sys:String>
+    <sys:String x:Key="ServiceManageWin_contextMenu_Header_Help">Help</sys:String>
+    <sys:String x:Key="ServiceManageWin_contextMenu_Header_Feedback">Feedback</sys:String>
+    <sys:String x:Key="ServiceManageWin_contextMenu_Header_Preferences">Preferences</sys:String>
+    <sys:String x:Key="ServiceManageWin_contextMenu_Header_Log_out">Log out</sys:String>
+    <sys:String x:Key="ServiceManageWin_Notification_Title">Notifications</sys:String>
+    <sys:String x:Key="ServiceManageWin_Filter_Btn">Filter</sys:String>
+    <sys:String x:Key="ServiceManageWin_Clear_Btn">Clear all</sys:String>
+    <sys:String x:Key="ServiceManageWin_Filter_OkBtn">OK</sys:String>
+    <sys:String x:Key="ServiceManageWin_Filter_CancelBtn">Cancel</sys:String>
+    <sys:String x:Key="ServiceManageWin_Filter_NoMatches">No matches</sys:String>
+    <sys:String x:Key="ServiceManageWin_No_notifications">No notifications</sys:String>
+
+    <sys:String x:Key="NotifyWin_Btn">Service manager</sys:String>
+    
+</ResourceDictionary>

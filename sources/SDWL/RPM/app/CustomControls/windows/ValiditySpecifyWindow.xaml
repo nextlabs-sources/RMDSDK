@@ -1,0 +1,26 @@
+﻿<Window x:Class="CustomControls.windows.ValiditySpecifyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomControls.windows"
+        xmlns:local_component="clr-namespace:CustomControls.components.ValiditySpecify"
+        mc:Ignorable="d"
+        Title="{DynamicResource ValidityWin_Title}" Height="500" Width="600" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <FontFamily x:Key="Lato">/CustomControls;component/resources/font/#Lato</FontFamily>
+    </Window.Resources>
+    
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,10">
+            <Button Click="Button_Select" FontFamily="{StaticResource Lato}" Content="{DynamicResource Windows_Btn_Save}" Style="{StaticResource UnifiedBtnStyle_Positive}" />
+            <Button Margin="12,0,12,0" FontFamily="{StaticResource Lato}" Click="Button_Cancel" Content="{DynamicResource Windows_Btn_Cancel}" Style="{StaticResource UnifiedBtnStyle_Negtive}"/>
+        </StackPanel>
+        <StackPanel>
+            <local_component:ValiditySpecify x:Name="ValidityComponent" Margin="10,5,0,0" 
+                                             ExpiryValueChanged="ValidityComponent_ExpiryValueChanged"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

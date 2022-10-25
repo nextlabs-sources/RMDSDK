@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{df3cf840-1b28-48f4-95d1-cf8b97bbc7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinUtil">
+      <UniqueIdentifier>{e01f75d1-8c69-4d6b-b350-f469d2f52f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{2554445f-984c-41f7-ba9c-d8c57ae834de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Crypt">
+      <UniqueIdentifier>{a60c9ade-a770-458c-9334-1cd022e82d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{19623d8b-2563-4678-949d-d1cf7070d10c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PDP">
+      <UniqueIdentifier>{0c84226e-7e5c-497a-b3f0-77b0fe8aa158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK">
+      <UniqueIdentifier>{5fd0d8dd-fcd2-4367-9988-dc9f8b44a813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client">
+      <UniqueIdentifier>{8a13aea3-b7f5-4c84-94b2-ad004c7eed25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub">
+      <UniqueIdentifier>{646e070c-9136-45bb-be81-352b4dbcf57c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\EVAL">
+      <UniqueIdentifier>{8426e9ac-e91d-41ea-bcd7-0f1aa5e1b2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\EVAL\src">
+      <UniqueIdentifier>{d95704b5-6121-4477-bdc3-08248dfad0fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Marshal">
+      <UniqueIdentifier>{f1c7dcbf-2a76-432a-8ea7-723797213ffd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CONN">
+      <UniqueIdentifier>{9c247d7c-1d43-43d7-ac8a-2719494cc7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CONN\src">
+      <UniqueIdentifier>{0a3ccc58-d457-48a0-8572-2d94e0bd3ca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEM">
+      <UniqueIdentifier>{878c99d9-d40a-470d-943b-eded7384d3d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEM\src">
+      <UniqueIdentifier>{e9946ef8-87a8-4581-baf7-a4127606cf82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\PEPMan">
+      <UniqueIdentifier>{2f9da52e-5117-4bda-8ec6-c893e1005787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\PEPMan\src">
+      <UniqueIdentifier>{929c8a4b-f7d2-4ca4-b00b-010b700eb042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transport">
+      <UniqueIdentifier>{9a7b913a-8bd4-4d4a-8c25-03ccce4583c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transport\src">
+      <UniqueIdentifier>{eb1de6d0-666b-4112-baa7-fc9df105af80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RPM">
+      <UniqueIdentifier>{fd946ac0-5b14-40ac-9485-91244696174b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Watermark">
+      <UniqueIdentifier>{f5e63cb6-dcb8-4c3e-b1ca-78338617f0e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEPrivate">
+      <UniqueIdentifier>{cf0b4f33-af6a-4b62-9533-dd9fcc731e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEPrivate\src">
+      <UniqueIdentifier>{a47527d7-148c-46b0-b69c-af90c3319183}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLAPI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\http_client.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Winutil\keym.cpp">
+      <Filter>WinUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\stringex.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\basic.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\cert.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\md5.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\sha.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="Winutil\securefile.cpp">
+      <Filter>WinUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\aes.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="Crypt\provider.cpp">
+      <Filter>Crypt</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRmTenant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRmLoginHttpRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRmUser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRmcInstance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Winutil\host.cpp">
+      <Filter>WinUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRSecureFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRmNXLFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRFiles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRNXLToken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PDP\pdp.cpp">
+      <Filter>PDP</Filter>
+    </ClCompile>
+    <ClCompile Include="cesdk\client\stub\EVAL\src\eval.cpp">
+      <Filter>CESDK\client\stub\EVAL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Marshal\src\marshal.cpp">
+      <Filter>Marshal</Filter>
+    </ClCompile>
+    <ClCompile Include="CESDK\client\stub\CONN\src\conn.cpp">
+      <Filter>CESDK\client\stub\CONN\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CESDK\client\stub\CEM\src\cestring.cpp">
+      <Filter>CESDK\client\stub\CEM\src</Filter>
+    </ClCompile>
+    <ClCompile Include="CESDK\client\stub\PEPMan\src\PEPMan.cpp">
+      <Filter>CESDK\client\stub\PEPMan\src</Filter>
+    </ClCompile>
+    <ClCompile Include="Transport\src\transport.cpp">
+      <Filter>Transport\src</Filter>
+    </ClCompile>
+    <ClCompile Include="RPM\nxrmcorehlp.cpp">
+      <Filter>RPM</Filter>
+    </ClCompile>
+    <ClCompile Include="RPM\drvcore_mgr.cpp">
+      <Filter>RPM</Filter>
+    </ClCompile>
+    <ClCompile Include="SDRPartialDownload.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Watermark\watermark.cpp">
+      <Filter>Watermark</Filter>
+    </ClCompile>
+    <ClCompile Include="Winutil\inifile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistryServiceEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CESDK\client\stub\CEPrivate\src\CEPrivate.cpp">
+      <Filter>CESDK\client\stub\CEPrivate\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\http_client.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Winutil\keym.h">
+      <Filter>WinUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\string.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\stringex.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\basic.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\cert.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\md5.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\sha.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Winutil\securefile.h">
+      <Filter>WinUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\aes.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\macros.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Crypt\provider.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRmTenant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLAPI.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLError.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLInc.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLResult.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLTenant.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLHttpRequest.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRmLoginHttpRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLUser.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRmUser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLInstance.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRmcInstance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Winutil\host.h">
+      <Filter>WinUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRSecureFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLNXLFile.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRmNXLFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRFiles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\SDLFiles.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRNXLToken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\nxrmcorehlp.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\nxrmdrv.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\rbtree.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\drvcore_mgr.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="SDRPartialDownload.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Watermark\watermark.h">
+      <Filter>Watermark</Filter>
+    </ClInclude>
+    <ClInclude Include="Winutil\inifile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Winutil\tstdlibs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\SDWL\RegistryServiceEntry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

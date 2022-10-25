@@ -1,0 +1,198 @@
+﻿<Page x:Class="CustomControls.FileRightsSelectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomControls"
+      xmlns:component="clr-namespace:CustomControls.components"
+      xmlns:adhoc="clr-namespace:CustomControls.components.DigitalRights"
+      xmlns:central="clr-namespace:CustomControls.components.CentralPolicy"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="900"
+      Title="FileRightsSelectPage">
+    <Page.Resources>
+        <local:Caption4VisibilityConvert x:Key="Caption4VisibleConvert"/>
+        <local:ProtectTypeToBoolenConverter x:Key="ProtectTypeConvert"/>
+        <local:ProtectTypeToAdVisibilityConvert x:Key="ProtectTypeToAdVbConvert"/>
+        <local:ProtectTypeToCpVisibilityConvert x:Key="ProtectTypeToCpVbConvert"/>
+
+        <FontFamily x:Key="Lato">/CustomControls;component/resources/font/#Lato</FontFamily>
+        
+        <!--for radiobutton-->
+        <SolidColorBrush x:Key="CheckedColor" Color="#27AE60"/>
+        <SolidColorBrush x:Key="UnCheckedColor" Color="Black"/>
+        <SolidColorBrush x:Key="DisEnabledColor" Color="#EDEDED"/>
+        <!--<SolidColorBrush x:Key="MouseOverColor">#27AE60</SolidColorBrush>-->
+
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border Background="Transparent" BorderThickness="0" >
+                            <StackPanel Orientation="Horizontal">
+                                <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Height}">
+                                    <Ellipse x:Name="Border" Height="20" Width="20" Margin="2" Fill="Transparent" StrokeThickness="2" Stroke="#333333"/>
+                                    <Ellipse x:Name="CheckArea" Margin="7" Fill="{DynamicResource CheckedColor}"/>
+                                </Grid>
+                                <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}"/>
+                            </StackPanel>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="CheckArea" Property="Fill" Value="{DynamicResource CheckedColor}"/>
+                                <Setter TargetName="Border" Property="Stroke" Value="{DynamicResource UnCheckedColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckArea" Property="Fill" Value="transparent"/>
+                                <Setter TargetName="Border" Property="Stroke" Value="{DynamicResource UnCheckedColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CheckArea" Property="Fill" Value="{DynamicResource CheckedColor}"/>
+                                <Setter TargetName="Border" Property="Stroke" Value="{DynamicResource CheckedColor}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="CheckArea" Property="Fill" Value="{DynamicResource DisEnabledColor}"/>
+                                <Setter TargetName="Border" Property="Stroke" Value="Gray"/>
+                                <Setter TargetName="Border" Property="Fill" Value="{DynamicResource DisEnabledColor}"/>
+                                <Setter Property="Foreground" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Page.Resources>
+
+    <StackPanel Orientation="Vertical">
+
+        <StackPanel Margin="0,12,0,0" Visibility="{Binding CaptionDescVisible}">
+            <component:CaptionDesc x:Name="captionCom"/>
+        </StackPanel>
+
+        <StackPanel Margin="0,12,0,0" Visibility="{Binding CaptionDescVisible, Converter={StaticResource Caption4VisibleConvert}}">
+            <component:CaptionDesc4 x:Name="captionCom4"/>
+        </StackPanel>
+        
+        <!--User-defined and Company-defined-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition Height="auto" ></RowDefinition>
+                <RowDefinition Height="3*" ></RowDefinition>
+                <RowDefinition Height="auto" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Margin="{Binding SavePathStpMargin}" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="{Binding SavePathStpVisibility}">
+                    <Image Margin="0,0,5,0" VerticalAlignment="Top" Width="15" Height="15" Stretch="Uniform" Source="/CustomControls;component/resources/icons/info_transparent.png"/>
+                    <TextBlock VerticalAlignment="Top" FontStyle="Italic" FontSize="14" FontFamily="{StaticResource Lato}" 
+                           MaxWidth="400" MaxHeight="40" TextTrimming="CharacterEllipsis" TextWrapping="Wrap">
+                    <Run FontWeight="Regular" Foreground="#868686" Text="{Binding SavePathDesc}"/>
+                    <Run FontWeight="DemiBold" Foreground="Black" Text="{Binding SavePath}"/>
+                        <TextBlock.ToolTip>
+                            <TextBlock FontStyle="Italic" FontSize="14" FontFamily="{StaticResource Lato}" MaxWidth="400" TextWrapping="Wrap" Text="{Binding SavePath}"/>
+                        </TextBlock.ToolTip>
+                </TextBlock>
+                </StackPanel>
+
+                <Button Grid.Row="1" Grid.Column="1" Margin="10,4,0,0" HorizontalAlignment="Right" FontStyle="Italic" FontSize="12" FontFamily="{StaticResource Lato}"
+                        VerticalAlignment="Top" Foreground="#2F80ED" Cursor="Hand" 
+                        Visibility="{Binding ChangDestBtnVisible}" Command="local:FRS_DataCommands.ChangeDestination"
+                        Content="{DynamicResource FileRightsSelect_Change_Location_Btn}" 
+                        Style="{StaticResource UnifiedBtnStyle_Underline}"/>
+            </Grid>
+            
+            
+
+            <!--If savePath is MyVault, should hidden desc and radio-->
+            <StackPanel Grid.Row="1" Margin="0,32,0,0" Visibility="{Binding DescAndRadioVisible}">
+                <!--Rights description-->
+                <TextBlock HorizontalAlignment="Center" FontFamily="{StaticResource Lato}" FontWeight="Regular" FontSize="16" 
+                       Text="{Binding FileTypeSelect_Sp_Lable}"/>
+                <!--switch radio-->
+                <StackPanel Margin="0,16,0,0" HorizontalAlignment="Center"  Orientation="Horizontal">
+
+                    <RadioButton  x:Name="rb_Central" FontWeight="Regular"
+                              FontFamily="{StaticResource Lato}" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                              IsChecked="{Binding Path=ProtectType, Converter={StaticResource ProtectTypeConvert},ConverterParameter=1}"
+                              Checked="Rb_Central_Checked"
+                              IsEnabled="{Binding CentralRadioIsEnable}"
+                              Content="{DynamicResource FileRightsSelect_Radio_Cnetral_Text}"/>
+
+                    <RadioButton x:Name="rb_Adhoc" Margin="24,0,0,0"  FontWeight="Regular"
+                             FontFamily="{StaticResource Lato}" FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                             IsChecked="{Binding Path=ProtectType, Converter={StaticResource ProtectTypeConvert},ConverterParameter=0}"
+                             Checked="Rb_Adhoc_Checked"
+                             IsEnabled="{Binding AdhocRadioIsEnable}"
+                             Content="{DynamicResource FileRightsSelect_Radio_Ahoc_Text}"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <!--Adhoc_CentralPolicy_Frame_switch-->
+            <Grid Grid.Row="2" Margin="100, 16, 100, 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+
+                <Border BorderBrush="#BEBEBE" BorderThickness="0.5" Padding="15" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <StackPanel>
+                        <!--Adhoc-->
+                        <StackPanel Orientation="Vertical" Visibility="{Binding ProtectType,Converter={StaticResource ProtectTypeToAdVbConvert}}">
+                            <TextBlock FontSize="16" FontFamily="{StaticResource Lato}" Foreground="#4F4F4F" 
+                                           TextAlignment="{Binding AdhocDesTextAlign}" TextWrapping="Wrap" 
+                                           Text="{Binding AdhocDesText}"/>
+                            <adhoc:SelectDigitalRights x:Name="page_Adhoc" Margin="120,10,120,0"/>
+                        </StackPanel>
+                        <!--CentralPolicy-->
+                        <StackPanel Orientation="Vertical" Visibility="{Binding ProtectType,Converter={StaticResource ProtectTypeToCpVbConvert}}">
+                            <TextBlock Padding="3" FontSize="16" FontFamily="{StaticResource Lato}" Background="White" Foreground="Gray" TextWrapping="Wrap"
+                                           TextAlignment="{Binding CpTextAlign}" Text="{Binding CpDesText}"/>
+                            <TextBlock Padding="3" FontSize="16" FontFamily="{StaticResource Lato}" Background="White" Foreground="Red" TextWrapping="Wrap"
+                                           TextAlignment="{Binding CpTextAlign}" Text="{Binding CpWarnDesText}" 
+                                           Visibility="{Binding CpWarnDesVisible}"/>
+                            <!--Move the two TextBlock of the SelectCentralPolicy page outside, temporarily keep the dependency properties of this page, and delete the useless properties later -->
+                            <central:SelectCentralPolicy x:Name="page_Central" Margin="80,10,80,0" Height="150"
+                                                          DescribeText="{Binding CpDesText}" 
+                                                          WarningDescribeText="{Binding CpWarnDesText}"
+                                                          WarningVisibility="{Binding CpWarnDesVisible}"
+                                                          DescribeTextAlignment="{Binding CpTextAlign}"
+                                                          Classification="{Binding CtP_Classifications}" 
+                                                          AddInheritedClassification="{Binding CtP_AddInheritedClassification}" 
+                                                          SelectClassificationChanged="OnSelectClassificationChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!--ConfirmBtn-->
+            <StackPanel Grid.Row="3" Margin="0,32,0,32" Orientation="Vertical" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="{Binding BtnSpHorizontalAlignment}">
+
+                    <Button FontFamily="{StaticResource Lato}" Content="{Binding PositiveBtnContent}" IsEnabled="{Binding PositiveBtnIsEnable}"
+                            Command="local:FRS_DataCommands.Positive" Style="{StaticResource UnifiedBtnStyle_Positive}"/>
+
+                    <Button Margin="12,0,0,0" FontFamily="{StaticResource Lato}" Content="{DynamicResource Windows_Btn_Cancel}" 
+                            Command="local:FRS_DataCommands.Cancel" Style="{StaticResource UnifiedBtnStyle_Negtive}"/>
+
+                    <Button Margin="12,0,0,0" FontFamily="{StaticResource Lato}" Foreground="#2F80ED" Cursor="Hand" VerticalAlignment="Center"
+                            Visibility="{Binding JustUploadBtnVisibility}"
+                            Content="{DynamicResource FileRightsSelect_JustUplod}"
+                            Command="local:FRS_DataCommands.JustUpload" Style="{StaticResource UnifiedBtnStyle_Underline}"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Grid>
+    </StackPanel>
+    
+</Page>

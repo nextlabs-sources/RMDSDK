@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="CustomControls.components.CaptionDesc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.components"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="600">
+    <UserControl.Resources>
+        <local:FileCountTextConverter x:Key="FileCountConver"/>
+
+        <FontFamily x:Key="Lato">/CustomControls;component/resources/font/#Lato</FontFamily>
+    </UserControl.Resources>
+    <!--Caption Section-->
+    <StackPanel  Orientation="Vertical" VerticalAlignment="Center">
+        <!--Operation title-->
+        <TextBlock HorizontalAlignment="Center"  FontFamily="{StaticResource Lato}" FontSize="22" Text="{Binding Title}" Visibility="{Binding TitleVisible}"/>
+        <!--Operation description-->
+        <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" FontFamily="{StaticResource Lato}" FontSize="14" Text="{Binding Description}" Visibility="{Binding DescriptionVisibility}"/>
+        <!--Selected file title-->
+        <TextBlock HorizontalAlignment="Center" Margin="0,4,0,4" FontFamily="{StaticResource Lato}" FontSize="16" >
+            <Run Text="{DynamicResource CapDesc_SelectFile}"/>    
+            <Run Text="{Binding FileCount, Converter={StaticResource FileCountConver}}"/>
+        </TextBlock>
+        <!--Selected file names container.-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Border BorderBrush="#ABADB3" Background="#F2F3F5" BorderThickness="1"  CornerRadius="1">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Height="auto" MinHeight="40" MaxHeight="90">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <!-- FileName contents here -->
+                        <TextBlock Margin="20,5,10,5" HorizontalAlignment="Left" Width="500" FontFamily="{StaticResource Lato}"
+                            TextWrapping="Wrap"  FontSize="16" Foreground="Black"   Text="{Binding FileName}"/>
+                        <!--Display Tags-->
+                        <Separator Margin="20,0,20,0" Background="LightGray" Visibility="{Binding PermissionVisibility}"/>
+                        <TextBlock x:Name="tb_FilePermission" Margin="20,2,10,2" HorizontalAlignment="Left" Width="450"
+                                   FontFamily="{StaticResource Lato}" TextWrapping="Wrap"  FontSize="14" Visibility="{Binding PermissionVisibility}">
+                                <Run Foreground="Green" Text="{Binding PermissionDescribe}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+            <Button Margin="20,0,20,0"  FontStyle="Italic" FontSize="10" VerticalAlignment="Center" Foreground="#2F80ED" Cursor="Hand" 
+                        FontFamily="{StaticResource Lato}" Visibility="{Binding ChangeBtnVisible}" 
+                        Content="{DynamicResource CapDesc_Change}"
+                        Command="local:CapD_DataCommands.Change"
+                        Style="{StaticResource UnifiedBtnStyle_Underline}"/>
+
+        </StackPanel>
+    </StackPanel>
+</UserControl>

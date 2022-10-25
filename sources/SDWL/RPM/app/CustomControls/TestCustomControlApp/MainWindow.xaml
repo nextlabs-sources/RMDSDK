@@ -1,0 +1,25 @@
+﻿<Window x:Class="TestCustomControlApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestCustomControlApp"
+        xmlns:CustomControl="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:central_page="clr-namespace:CustomControls.components.CentralPolicy;assembly=CustomControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="520" Width="480"
+        central_page:SelectCentralPolicy.SelectClassificationChanged="Window_SelectClassificationChanged">
+    
+    <Grid>
+        <TabControl>
+            <TabItem Header="FileRightsSelectPage">
+                <Frame>
+                    <Frame.Content>
+                        <CustomControl:FileRightsSelectPage x:Name="Frs_UC" ToggleButton.Checked="Frs_UC_RaidoBtnChecked"/>
+                    </Frame.Content>
+                </Frame>
+            </TabItem>
+           
+        </TabControl>
+    </Grid>
+</Window>

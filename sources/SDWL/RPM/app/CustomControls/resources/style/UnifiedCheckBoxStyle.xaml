@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CustomControls.resources.style">
+    <Style TargetType="CheckBox">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Foreground" Value="#4F4F4F"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="/CustomControls;component/resources/font/#Lato"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator FlowDirection="LeftToRight" VerticalAlignment="Center">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="border"
+                                            BorderThickness="2"
+                                            BorderBrush="#333333"
+                                            Width="20"
+                                            Height="20"
+                                            MinHeight="15"
+                                            MinWidth="15"
+                                            VerticalAlignment="Center">
+                                <Path x:Name="path" Width="12" Height="12" Stroke="White" StrokeThickness="2"/>
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="8,0,0,0"/>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="path" Property="Data" Value="M 0,6 L 5,10 12,0"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter TargetName="border" Property="Background" Value="#0F9D58"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#0F9D58"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter TargetName="border" Property="Background" Value="Transparent"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#333333"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter TargetName="border" Property="Background" Value="Black"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#333333"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

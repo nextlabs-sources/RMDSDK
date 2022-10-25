@@ -1,0 +1,29 @@
+﻿<Page x:Class="CustomControls.FileRightsResultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomControls"
+      xmlns:component="clr-namespace:CustomControls.components"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FileRightsResultPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <component:CaptionDesc3 Grid.Row="0" x:Name="captionDesc3"/>
+
+        <component:AdhocAndClassifiedRights Grid.Row="1" Margin="150,30,150,0" x:Name="adhocAndclassifiedRights"/>
+
+        <StackPanel Grid.Row="2" Margin="0,20,0,50" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="{DynamicResource Windows_Btn_Close}" IsDefault="True"
+                    Command="local:FRResult_DataCommands.Close"
+                    Style="{StaticResource UnifiedBtnStyle_Negtive}"/>
+        </StackPanel>
+    </Grid>
+</Page>

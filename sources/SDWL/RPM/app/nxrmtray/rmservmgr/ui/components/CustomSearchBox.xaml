@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="ServiceManager.rmservmgr.ui.components.CustomSearchBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ServiceManager.rmservmgr.ui.components"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="*"/>
+            <!--<ColumnDefinition Width="36"/>-->
+        </Grid.ColumnDefinitions>
+
+        <!--draw a rectangle as the background-->
+        <!--<Rectangle x:Name="rec" Grid.Column="0" Grid.ColumnSpan="3" Fill="White" Opacity="0.8" Stroke="Gray"/>-->
+
+        <TextBox x:Name="TbxInput" Grid.Column="1">
+            <!--changed the template using ControlTemplate-->
+            <TextBox.Template>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Rectangle x:Name="rec"  Fill="White" Opacity="0.8" Stroke="Gray"/>
+
+                        <TextBlock x:Name="tbx_hint" Text=" Search" Foreground="Gray" Opacity="0.3" Margin="2,0,0,0"
+                                   VerticalAlignment="Center" Visibility="Collapsed"/>
+                        <TextBox x:Name="tbx_content" Margin="0,0,25,0" Foreground="Gray" Background="Transparent" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0"
+                                 Text="{Binding Path=Text, ElementName=TbxInput, Mode=TwoWay}" FontSize="12" Height="20" TextChanged="Tbx_content_TextChanged"/>
+                        <!--Search or Clear button-->
+                        <Button x:Name="clearBtn" 
+                                Click="ClearBtn_Click"
+                                Cursor="Hand" 
+                                HorizontalAlignment="Right" 
+                                Margin="0,0,5,0">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Image x:Name="Uc_Image" Source="/resources/icons/search.png" Stretch="None" />
+                                        <ContentPresenter/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+
+                    <!--Control the visible and hide by controlTemplate Trigger.-->
+                    <ControlTemplate.Triggers>
+                        <Trigger SourceName="tbx_content" Property="Text" Value="" >
+                            <Setter TargetName="tbx_hint" Property="Visibility" Value="Visible"/>
+
+                        </Trigger>
+
+                        <Trigger SourceName="tbx_content" Property="IsFocused" Value="true">
+                            <Setter TargetName="tbx_hint" Property="Visibility" Value="Hidden"/>
+                            <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                        </Trigger>
+
+                        <Trigger SourceName="tbx_content" Property="IsMouseOver" Value="true">
+                            <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                        </Trigger>
+
+                        <Trigger SourceName="clearBtn" Property="IsMouseOver" Value="true">
+                            <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="CustomControls.components.AdhocAndClassifiedRights"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.components"
+             xmlns:component="clr-namespace:CustomControls.components"
+             xmlns:rightsDisplay="clr-namespace:CustomControls.components.RightsDisplay"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:FileTypeToAdVisibilityConvert x:Key="FileTypeToAdVisibleConver"/>
+        <local:FileTypeToCpVisibilityConvert x:Key="FileTypeToCpVisibleConver"/>
+    </UserControl.Resources>
+    
+    <Grid>
+        <!--Adhoc rights-->
+        <StackPanel Orientation="Vertical" Visibility="{Binding FileType,Converter={StaticResource FileTypeToAdVisibleConver}}">
+            <TextBlock HorizontalAlignment="Center" FontSize="17" FontFamily="segoe ui" FontWeight="DemiBold" 
+                           LineHeight="20" Foreground="#4F4F4F"
+                           Text="{DynamicResource Rights_Apply_Text}"/>
+
+            <rightsDisplay:RightsStackPanle x:Name="rightSP" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!--Complany Define rights-->
+        <StackPanel Orientation="Vertical" Visibility="{Binding FileType,Converter={StaticResource FileTypeToCpVisibleConver}}">
+            <TextBlock HorizontalAlignment="Center" FontSize="17" FontFamily="segoe ui" FontWeight="DemiBold" 
+                           LineHeight="20" Foreground="#4F4F4F"
+                           Text="{DynamicResource Rights_Company_Defined}"/>
+
+            <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" FontFamily="Lato" FontWeight="Regular" 
+                       FontSize="14" Foreground="Gray" Text="{DynamicResource Rights_Company_Text}"/>
+
+            <component:ClassifiedRights Margin="0,5,0,0" x:Name="classifiedRights"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

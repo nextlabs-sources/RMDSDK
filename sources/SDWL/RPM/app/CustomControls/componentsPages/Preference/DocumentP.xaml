@@ -1,0 +1,53 @@
+﻿<Page x:Class="CustomControls.pages.Preference.DocumentP"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomControls.pages.Preference"
+      xmlns:waterMark="clr-namespace:CustomControls.components"
+      xmlns:expiry="clr-namespace:CustomControls.components.ValiditySpecify"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="800"
+      Title="DocumentP">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Margin="10,0,0,0" FontSize="18" FontFamily="Segoe UI" LineHeight="38" HorizontalAlignment="Left"
+                   Text="{DynamicResource Document_Title}" />
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Margin="10,0,0,0" FontSize="16" FontFamily="Segoe UI" LineHeight="21" HorizontalAlignment="Left">
+                <Run Text="{DynamicResource Document_Defult_WaterMark}"/>
+                <Run Foreground="#919191" Text="{DynamicResource Document_UserDefined}"/>
+            </TextBlock>
+            <waterMark:EditWatermark x:Name="editWaterMark" Margin="10,5,10,0" WarterMark="{Binding WarterMark}" WarterMarkChanged="EditWaterMark_WarterMarkChanged"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="vertical">
+            <TextBlock  Margin="10,10,0,0" FontSize="16" FontFamily="Segoe UI" LineHeight="16" HorizontalAlignment="Left">
+                <Run Text="{DynamicResource Document_Expire_Text}"/>
+                <Run Foreground="#919191" Text="{DynamicResource Document_UserDefined}"/>
+            </TextBlock>
+            <expiry:ValiditySpecify x:Name="ValidityComponent" Margin="10,5,0,0" Expiry="{Binding Expiry}" ExpiryValueChanged="ValidityComponent_ExpiryValueChanged"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Right" Height="54" Margin="0,10,10,5">
+            <Button x:Name="BtnSave" Margin="0,0,0,10" Width="120" VerticalAlignment="Center" 
+                    Command="local:Dcm_DataCommands.Save" IsEnabled="{Binding BtnSaveIsEnable}"
+                    Content="{DynamicResource Document_Btn_Save}"
+                    Style="{StaticResource UnifiedBtnStyle_Positive}"/>
+            <Button x:Name="BtnApply" Margin="10,0,0,10" Width="120" VerticalAlignment="Center"
+                    Command="local:Dcm_DataCommands.Apply" IsEnabled="{Binding BtnApplyIsEnable}"
+                    Content="{DynamicResource Document_Btn_Apply}"
+                    Style="{StaticResource UnifiedBtnStyle_Positive}"/>
+            <Button x:Name="BtnCancel" Margin="10,0,0,10" Width="120" VerticalAlignment="Center"
+                    Command="local:Dcm_DataCommands.Cancel"
+                    Content="{DynamicResource Document_Btn_Cancle}"
+                    Style="{StaticResource UnifiedBtnStyle_Negtive}"/>
+        </StackPanel>
+    </Grid>
+</Page>

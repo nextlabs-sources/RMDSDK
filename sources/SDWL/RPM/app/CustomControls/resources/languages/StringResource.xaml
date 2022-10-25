@@ -1,0 +1,253 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CustomControls.resources.languages"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <!--Note-->
+    <!--if need white space,should use  &#160; or &#x0020;  .If have multi-white space, add reference xml:space="preserve" -->
+    <!--if need newline, should use  &#13; or &#x000A;  .And must add reference xml:space="preserve"-->
+    <!--&#13; is \r-->
+    <!--&#x000A; is \n-->
+
+    
+    <!--*********************************************CommonString********************************************-->
+    <sys:String x:Key="Windows_Defult_Title">SkyDRM DESKTOP</sys:String>
+    <sys:String x:Key="Windows_Btn_Save">Save</sys:String>
+    <sys:String x:Key="Windows_Btn_OK">OK</sys:String>
+    <sys:String x:Key="Windows_Btn_Cancel">Cancel</sys:String>
+    <sys:String x:Key="Windows_Btn_Share">Share</sys:String>
+    <sys:String x:Key="Windows_Btn_Update">Update</sys:String>
+    <sys:String x:Key="Windows_Btn_Revoke">Revoke Sharing</sys:String>
+    <sys:String x:Key="Windows_Btn_Close">Close</sys:String>
+    <sys:String x:Key="Windows_Btn_Back">Back</sys:String>
+    <sys:String x:Key="Windows_Btn_Finish">Finish</sys:String>
+    <sys:String x:Key="Windows_Btn_Skip">&#160;Do not protect&#160;</sys:String>
+    <sys:String x:Key="Windows_Btn_Modify">&#160;Modify permissions&#160;</sys:String>
+
+    <sys:String x:Key="Label_WaterMark">Watermark:</sys:String>
+    <sys:String x:Key="Label_Validity">Validity:</sys:String>
+
+    <sys:String x:Key="Rights_User_Defined">User-defined permissions</sys:String>
+    <sys:String x:Key="Rights_User_Text">User-defined rights are pre-defined permissions that you can apply to your documents</sys:String>
+    <sys:String x:Key="Rights_Company_Defined">Company-defined permissions</sys:String>
+    <sys:String x:Key="Rights_Company_Text">Company-defined rights are permissions determined by centralized policies</sys:String>
+    <sys:String x:Key="Rights_Granted_For">Permissions granted for the file</sys:String>
+    <sys:String x:Key="Rights_Apply_Text">Permissions applied to the file</sys:String>
+    <sys:String x:Key="Rights_Warning_Text">Warning: You are protecting the file with no classification.</sys:String>
+    <!--*******************************************************************************************************************-->
+    
+    
+    <!--****************************************component string***************************************************-->
+    <!--RightsStackPanel.xaml-->
+    <sys:String x:Key="RightsItem_View">View</sys:String>
+    <sys:String x:Key="RightsItem_Edit">Edit</sys:String>
+    <sys:String x:Key="RightsItem_Print">Print</sys:String>
+    <sys:String x:Key="RightsItem_Share">Re-share</sys:String>
+    <sys:String x:Key="RightsItem_SaveAs">Save As</sys:String>
+    <sys:String x:Key="RightsItem_Download">Download</sys:String>
+    <sys:String x:Key="RightsItem_Extract">Extract</sys:String>
+    <sys:String x:Key="RightsItem_Watermark">Watermark</sys:String>
+    <sys:String x:Key="RightsItem_Validity">Validity</sys:String>
+
+    <!--ClassfifiedRights.xaml-->
+    <sys:String x:Key="ClassifiedRight_No_Permission">You do not have any permission on this file.</sys:String>
+
+    <!--EditWatermark.xmal-->
+    <sys:String x:Key="Preset_User_ID">User ID</sys:String>
+    <sys:String x:Key="Preset_Date">Date</sys:String>
+    <sys:String x:Key="Preset_Time">Time</sys:String>
+    <sys:String x:Key="Preset_Line_break">Line break</sys:String>
+    
+    <sys:String x:Key="EditWatermarkCom_Title_Text">Edit the existing watermark by either typing a custom value or by selecting the preset values.</sys:String>
+    <sys:String x:Key="EditWatermarkCom_Tb_PromptInfo_Text">Watermark cannot be set empty.</sys:String>
+    <sys:String x:Key="EditWatermarkCom_Text_Add">Add preset values</sys:String>
+    <sys:String x:Key="EditWatermarkCom_Btn_Addline">Add line break</sys:String>
+
+    <sys:String x:Key="EditWatermarkCom_Tb_PromptInfo_Text1">Watermark cannot be empty.</sys:String>
+    <sys:String x:Key="EditWatermarkCom_Tb_PromptInfo_Text2">Watermark string exceeds 50 characters.</sys:String>
+
+    <!--ValiditySpecify.xaml-->
+    <sys:String x:Key="ValidityCom_RadioBtn_Never">Never expire</sys:String>
+    <sys:String x:Key="ValidityCom_RadioBtn_Relative">Relative</sys:String>
+    <sys:String x:Key="ValidityCom_RadioBtn_Absolute">Absolute date</sys:String>
+    <sys:String x:Key="ValidityCom_RadioBtn_Range">Date range</sys:String>
+    <sys:String x:Key="ValidityCom_Never_Description0">Access permissions will&#160;</sys:String>
+    <sys:String x:Key="ValidityCom_Never_Description1">Never expire</sys:String>
+    <sys:String x:Key="ValidityCom_Never_Description2">Never expire</sys:String>
+
+    <sys:String x:Key="ValidityCom_Lable_Year">Year(s)</sys:String>
+    <sys:String x:Key="ValidityCom_Lable_Month">Month(s)</sys:String>
+    <sys:String x:Key="ValidityCom_Lable_Week">Week(s)</sys:String>
+    <sys:String x:Key="ValidityCom_Lable_Day">Day(s)</sys:String>
+
+    <sys:String x:Key="ValidityCom_Btn_Clear">Clear</sys:String>
+    
+    <!--CaptionDesc.xaml-->
+    <sys:String x:Key="CapDesc_Describe_Adhoc">Apply appropriate permissions to protect the file</sys:String>
+    <sys:String x:Key="CapDesc_Describe_Central">Apply appropriate classifications to protect the file</sys:String>
+    <sys:String x:Key="CapDesc_SelectFile">Selected file</sys:String>
+    <sys:String x:Key="CapDesc_Change">Change</sys:String>
+
+    <!--CaptionDesc3.xaml-->
+    <sys:String x:Key="CapDesc3_Save">successfully saved</sys:String>
+    <sys:String x:Key="CapDesc3_To">to</sys:String>
+
+   
+    <!--SelectDigitalRights-->
+    <sys:String x:Key="SelectRights_CheckBox_View">View</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Edit">Edit</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Print">Print</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Share">Re-share</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Download">Save As</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Watermark">Watermark</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Validity">Validity</sys:String>
+
+    <sys:String x:Key="SelectRights_Options">more options</sys:String>
+    <sys:String x:Key="SelectRights_CheckBox_Decrypt">Extract</sys:String>
+
+    <sys:String x:Key="SelectRights_Underline_Change">Change</sys:String>
+
+    <!--SelectCentralPolicy.xaml-->
+    <sys:String x:Key="SelectCentral_Mandatory">&#160;(Mandatory)</sys:String>
+
+    <!--*******************************************************************************************************************-->
+    
+    
+    <!--*****************************************component Pages string************************************************-->
+    <!--SystemP.xaml-->
+    <sys:String x:Key="System_System_Title">System</sys:String>
+    <sys:String x:Key="System_Show_Notify">Show desktop notifications.</sys:String>
+    <sys:String x:Key="System_Check_LeaveCopy">Keep an offline copy when the protected file (.nxl) is saved to SkyDRM.</sys:String>
+    <sys:String x:Key="System_UserRPM_Default">My SkyDRM Folder</sys:String>
+    <sys:String x:Key="System_UserRPM_Describe" xml:space="preserve">Specify the location on your computer where you would like to store the NextLabs Protected File (.nxl).</sys:String>
+    <sys:String x:Key="System_UserRPM_Choose">Choose location:</sys:String>
+    <sys:String x:Key="System_UserRPM_Browse">Browse...</sys:String>
+    <sys:String x:Key="System_Btn_Save">Save</sys:String>
+    <sys:String x:Key="System_Btn_Apply">Apply</sys:String>
+    <sys:String x:Key="System_Btn_Cancle">Cancel</sys:String>
+    <!--DocumentP.xaml-->
+    <sys:String x:Key="Document_Title">Document</sys:String>
+    <sys:String x:Key="Document_UserDefined">(User-defined policy)</sys:String>
+    <sys:String x:Key="Document_Defult_WaterMark">Default watermark</sys:String>
+    <sys:String x:Key="Document_Expire_Text">Digital permissions validity period</sys:String>
+    <sys:String x:Key="Document_Btn_Save">Save</sys:String>
+    <sys:String x:Key="Document_Btn_Apply">Apply</sys:String>
+    <sys:String x:Key="Document_Btn_Cancle">Cancel</sys:String>
+
+    <!--RpmP.xaml-->
+    <sys:String x:Key="RpmP_UserRPM_Default">My folder</sys:String>
+    <!--<sys:String x:Key="RpmP_UserRPM_Describe" xml:space="preserve">Specify the location on your computer where you would like to store the NextLabs Protected File (.nxl).</sys:String>-->
+    <sys:String x:Key="RpmP_UserRPM_Describe" xml:space="preserve">Specify the folder on your computer where you would like to set as My folder</sys:String>
+    <sys:String x:Key="RpmP_UserRPM_Choose">Choose location:</sys:String>
+    <sys:String x:Key="RpmP_UserRPM_Browse">Browse...</sys:String>
+    <sys:String x:Key="RpmP_Btn_Apply">Apply</sys:String>
+    <sys:String x:Key="RpmP_Btn_Cancle">Cancel</sys:String>
+    <sys:String x:Key="RpmP_ManageRPM_Title">Managed folder</sys:String>
+    <sys:String x:Key="RpmP_ManageRPM_Describe" xml:space="preserve">Select the managed SkyDRM folders that you would like to reset to regular folder. Beware that managed SkyDRM folders are used by applications to access .nxl files</sys:String>
+    <sys:String x:Key="RpmP_List_Column_Name">Name</sys:String>
+    <sys:String x:Key="RpmP_List_Column_Path">Path</sys:String>
+    <sys:String x:Key="RpmP_Btn_Reset">Reset</sys:String>
+    <sys:String x:Key="RpmP_List_Column_Auto_Protection">Auto-protection</sys:String>
+    <sys:String x:Key="RpmP_Delete_MyFolder_Item">Delete</sys:String>
+    <sys:String x:Key="RpmP_Add_MyFolder">Add My Folder</sys:String>
+    
+    <!--PreferenceUC-->
+    <sys:String x:Key="PreUC_Title">Preferences</sys:String>
+    <sys:String x:Key="PreUC_Describe">Preferences for SkyDRM</sys:String>
+    <sys:String x:Key="PreUC_System_Btn">System</sys:String>
+    <sys:String x:Key="PreUC_Document_Btn">Document</sys:String>
+    <sys:String x:Key="PreUC_Folder_Btn">Folder</sys:String>
+    
+    
+    <!--*******************************************************************************************************************-->
+
+    
+    <!--*****************************************Office UserControl string************************************************-->
+    <!--FileRightsSelectEx.xaml-->
+    <sys:String x:Key="FileRightsSelectEx_Click_Text">Click</sys:String>
+    <sys:String x:Key="FileRightsSelectEx_Protect_Text">&quot;Protect&quot;</sys:String>
+    <sys:String x:Key="FileRightsSelectEx_ToSecure_Text">to secure your file in the .NXL format.</sys:String>
+    <sys:String x:Key="FileRightsSelectEx_NotProtect_Text">&quot;Cancel&quot;</sys:String>
+    <sys:String x:Key="FileRightsSelectEx_ToSave_Text">to save your file without protection.</sys:String>
+    
+    <!--*******************************************************************************************************************-->
+
+    
+    <!--*****************************************Windows string************************************************-->
+    <!--FileInformationWindow.xaml-->
+    <sys:String x:Key="FileInfoWin_Size">Size</sys:String>
+    <sys:String x:Key="FileInfoWin_Last_Modified">Last modified on</sys:String>
+    <sys:String x:Key="FileInfoWin_Original_File">Original File</sys:String>
+    <sys:String x:Key="FileInfoWin_Request_Validity">Request Renew validity</sys:String>
+    <sys:String x:Key="FileInfoWin_Access_Denied">Access Denied</sys:String>
+    <sys:String x:Key="Exception_Sdk_Insufficient_Rights">You have no permission to access the file.</sys:String>
+
+    <!--EditWatermarkWindow.xaml-->
+    <sys:String x:Key="EditWatermarkWin_Title">Edit watermark</sys:String>
+
+    <!--ValiditySpecifyWindow-->
+    <sys:String x:Key="ValidityWin_Title">Specify permission expiry date</sys:String>
+
+    <!--*******************************************************************************************************************-->
+
+    
+    <!--**********************************************Pages string********************************************************-->
+    <!--FileDestSelectPage.xaml-->
+    <sys:String x:Key="FileDestSelect_SavePath_Lable">File will be saved to</sys:String>
+    <sys:String x:Key="FileDestSelect_Sp_Lable">Select a location to save the file</sys:String>
+    <sys:String x:Key="FileDestSelect_Radio_LocalDrive_Text">Local Drive</sys:String>
+    <sys:String x:Key="FileDestSelect_Radio_CentralLocation_Text">SkyDRM</sys:String>
+    <sys:String x:Key="FileDestSelect_LocalDrive_Desc">Select folder to save protected file in local drive</sys:String>
+    <sys:String x:Key="FileDestSelect_LocalDrive_Btn">Browse...</sys:String>
+    <sys:String x:Key="FileDestSelect_CentralLocation_Desc">Select central location to save protected file</sys:String>
+    <sys:String x:Key="FileDestSelect_Select_Btn">Select</sys:String>
+
+    <!--FileDestReSharePage.xaml-->
+    <sys:String x:Key="FileDestReShare_Project">Project</sys:String>
+    <sys:String x:Key="FileDestReShare_File">&#160;Files</sys:String>
+    <sys:String x:Key="FileDestReShare_Invite">invited by:</sys:String>
+    <sys:String x:Key="FileDestReShare_ShareBtn">Share file</sys:String>
+
+    <!--FileDestReShareUpdatePage.xaml-->
+    <sys:String x:Key="FileDestReShareUpdate_ShareWith">Share with</sys:String>
+
+    <!--FileReShareResultPage.xaml-->
+    <sys:String x:Key="FileReShareResult_Title">Share a protected file</sys:String>
+    <sys:String x:Key="FileReShareResult_Protect">The protected file is</sys:String>
+    <sys:String x:Key="FileReShareResult_Success">successfully shared</sys:String>
+    <sys:String x:Key="FileReShareResult_With">with</sys:String>
+    
+
+    <!--FileRightsSelectPage.xaml-->
+    <sys:String x:Key="FileRightsSelect_SavePath_Lable">The protected file will be saved to</sys:String>
+    <sys:String x:Key="FileRightsSelect_Change_Location_Btn">Change save location</sys:String>
+    <sys:String x:Key="FileRightsSelect_Sp_Lable">Specify permissions to the file</sys:String>
+    <sys:String x:Key="FileRightsSelect_Radio_Cnetral_Text">Company-defined</sys:String>
+    <sys:String x:Key="FileRightsSelect_Radio_Ahoc_Text">User-defined</sys:String>
+    <sys:String x:Key="FileRightsSelect_JustUplod">Do not protect, just upload</sys:String>
+
+    <!--FileRightsSharePage.xaml-->
+    <sys:String x:Key="FileRightsShare_SavePath_Lable">Above file will be protected into</sys:String>
+    <sys:String x:Key="FileRightsShare_SavePath_Lable2">and will be shared with recipients</sys:String>
+    <sys:String x:Key="FileRightsShare_ShareWith_Lable">Share with</sys:String>
+    <sys:String x:Key="FileRightsShare_AddEmail_Lable">Add email address</sys:String>
+    <sys:String x:Key="FileRightsShare_Message_Lable">Message</sys:String>
+    <sys:String x:Key="FileRightsShare_Message_Lable2">(Optional)</sys:String>
+    <sys:String x:Key="FileRightsShare_AddMessage_Lable">Add a message to be included in the notification email</sys:String>
+    <sys:String x:Key="FileRightsShare_Message_Exceed">Comments string exceeds 250 characters.</sys:String>
+
+    <!--FileRightsShareResultPage.xaml-->
+    <sys:String x:Key="FileRightsShareResult_Successful_Lable">Successfully shared</sys:String>
+
+    <!-- MyFolderConfigWindow -->
+    <sys:String x:Key="MyFolder_Choose">Choose a folder</sys:String>
+    <sys:String x:Key="Auto_Protection">Auto-protection</sys:String>
+    <sys:String x:Key="Classifications">Classifications</sys:String>
+    <sys:String x:Key="Auto_Protection_description">If the auto-protection is checked, the files copied or moved to this folder will be protected automatically</sys:String>
+    <sys:String x:Key="Classifications_description">Files copied or moved to My folder will be protected with the selected classifications</sys:String>
+    <sys:String x:Key="Warning_Invalid_Path">Invalid file path or file path doesn't exist</sys:String>
+    <sys:String x:Key="Warning_Invalid_Tag">Invalid Tag</sys:String>
+    <sys:String x:Key="Warning_No_Classification">Warning: You are protecting the file with no classification</sys:String>
+
+    <!--*******************************************************************************************************************-->
+    
+</ResourceDictionary>

@@ -1,0 +1,11 @@
+
+LIBRARY NXRMVHDMGR
+EXPORTS
+    NCreateVhd              @1  NONAME
+    NCreateVhdFromTemplate  @2  NONAME
+    NFormatVhd              @3  NONAME
+    NMountVhd               @4  NONAME
+    NUnmountVhd             @5  NONAME
+    NGetVhdProperty         @6  NONAME
+    NSetVhdProperty         @7  NONAME
+    NVerifyVhdPassword      @8  NONAME

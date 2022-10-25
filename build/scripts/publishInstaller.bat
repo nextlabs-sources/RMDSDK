@@ -1,0 +1,46 @@
+REM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+REM % publishInstaller.bat
+REM %
+REM % Publish SkyDRM Client SDK installer
+REM %
+REM % Usage: publishInstaller
+REM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+@ECHO ON
+
+SETLOCAL
+
+set PROD_DIR=SkyDRM\ClientSDK\Windows
+
+CALL setVersion.bat
+
+IF "%BUILD_NUMBER%"=="" (
+  echo Error: BUILD_NUMBER is not set!
+  GOTO :EOF
+)
+
+set S_DRIVE=\\nextlabs.com\share\data
+set S_DRIVE_POSIX=//nextlabs.com/share/data
+
+IF "%CONFIG_TYPE%"=="feature_smdc" (
+  set VERSION_DIR=%S_DRIVE%\%OUTPUT_REPOSITORY_ROOT%\%PROD_DIR%\%VERSION_MAJMIN%.%BRANCH_ID%
+  set VERSION_DIR_POSIX=%S_DRIVE_POSIX%/%OUTPUT_REPOSITORY_ROOT_POSIX%/%PROD_DIR%/%VERSION_MAJMIN%.%BRANCH_ID%
+) ELSE IF "%CONFIG_TYPE%"=="feature_cdc" (
+  set VERSION_DIR=%S_DRIVE%\%OUTPUT_REPOSITORY_ROOT%\%PROD_DIR%\%VERSION_MAJMIN%.%BRANCH_ID%
+  set VERSION_DIR_POSIX=%S_DRIVE_POSIX%/%OUTPUT_REPOSITORY_ROOT_POSIX%/%PROD_DIR%/%VERSION_MAJMIN%.%BRANCH_ID%
+) ELSE (
+  set VERSION_DIR=%S_DRIVE%\%OUTPUT_REPOSITORY_ROOT%\%PROD_DIR%\%VERSION_MAJMIN%
+  set VERSION_DIR_POSIX=%S_DRIVE_POSIX%/%OUTPUT_REPOSITORY_ROOT_POSIX%/%PROD_DIR%/%VERSION_MAJMIN%
+)
+
+set INSTALLER_FILE=%VERSION_DIR_POSIX%/%VERSION_BUILD_SHORT%/SkyDRM_ClientSDK-%VERSION_MAJMIN%.%VERSION_BUILD_SHORT%.zip
+
+IF NOT EXIST %VERSION_DIR% md %VERSION_DIR%
+IF ERRORLEVEL 1 GOTO :EOF
+IF NOT EXIST %VERSION_DIR%\%VERSION_BUILD_SHORT% md %VERSION_DIR%\%VERSION_BUILD_SHORT%
+IF ERRORLEVEL 1 GOTO :EOF
+zip -j -9 %INSTALLER_FILE% "../../install/build/output/Product Configuration 1/Media_MSI/DiskImages/DISK1/SkyDRM Client SDK.msi"
+IF ERRORLEVEL 1 GOTO END
+echo INFO: Created %INSTALLER_FILE%
+
+GOTO :EOF

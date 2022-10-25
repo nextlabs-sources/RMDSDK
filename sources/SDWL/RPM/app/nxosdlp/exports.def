@@ -1,0 +1,4 @@
+LIBRARY
+    EXPORTS
+        init_file_virtualization
+	set_fv_path

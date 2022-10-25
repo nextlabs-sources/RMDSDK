@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{2554445f-984c-41f7-ba9c-d8c57ae834de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RPM">
+      <UniqueIdentifier>{fd946ac0-5b14-40ac-9485-91244696174b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\stringex.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="RPM\nxrmcorehlp.cpp">
+      <Filter>RPM</Filter>
+    </ClCompile>
+    <ClCompile Include="RPM\drvcore_mgr.cpp">
+      <Filter>RPM</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLAPI_forInstaller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\string.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\stringex.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\macros.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\nxrmcorehlp.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\nxrmdrv.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\rbtree.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+    <ClInclude Include="RPM\drvcore_mgr.h">
+      <Filter>RPM</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

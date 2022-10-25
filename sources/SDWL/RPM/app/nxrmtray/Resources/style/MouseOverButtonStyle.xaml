@@ -1,0 +1,124 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ServiceManager.resources.style"
+                    xmlns:helper="clr-namespace:ServiceManager.rmservmgr.common.helper">
+    <helper:UriToBitmapImageConverter x:Key="uri2Image"></helper:UriToBitmapImageConverter>
+
+    <!--Change the image Scale-->
+    <Style x:Key="YellowButton" >
+        <Setter Property="Button.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <!-- Border style-->
+                        <Border Name="Border" BorderBrush="#F5D350" BorderThickness="1" CornerRadius="3" Visibility="Hidden">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FDEEB3" Offset="0"/>
+                                    <GradientStop Color="#FDE690" Offset="0.3"/>
+                                    <GradientStop Color="#FDEEAE" Offset="0.56"/>
+                                    <GradientStop Color="#FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <!--Content-->
+                        <Image Stretch="Fill" Source="{TemplateBinding Button.Content, Converter={StaticResource uri2Image}}" RenderTransformOrigin="0.5,0.5"  >
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                    </Grid>
+                    <!--Triggers-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="Button.IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Extend that not changing the image scale-->
+    <Style x:Key="MouseOverBtnStyle" TargetType="{x:Type Button}">
+        <Setter Property="Button.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <!-- Border style-->
+                        <Border Name="Border" BorderBrush="#F9E080" BorderThickness="1" CornerRadius="3" Visibility="Hidden">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FDEEB3" Offset="0"/>
+                                    <GradientStop Color="#FDE690" Offset="0.3"/>
+                                    <GradientStop Color="#FDEEAE" Offset="0.56"/>
+                                    <GradientStop Color="#FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <!--Content-->
+                        <Image Stretch="None" Source="{TemplateBinding Button.Content, Converter={StaticResource uri2Image}}" Margin="2"/>
+                    </Grid>
+                    <!--Triggers-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="Button.IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Extend Button that contains image & text, and not changing the image scale-->
+    <Style TargetType="Button" x:Key="MouseOverBtnStyleEx">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <!-- Border style-->
+                        <Border Name="Border" BorderBrush="#F9E080" BorderThickness="1" CornerRadius="3" Visibility="Hidden">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Color="#FDEEB3" Offset="0"/>
+                                    <GradientStop Color="#FDE690" Offset="0.3"/>
+                                    <GradientStop Color="#FDEEAE" Offset="0.56"/>
+                                    <GradientStop Color="#FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+                        <!--Content-->
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{TemplateBinding Button.Tag, Converter={StaticResource uri2Image} }" Stretch="None" Margin="5,0,0,0"/>
+                            <TextBlock x:Name="Tb_ProtectFile" Text="{TemplateBinding Button.Content}" Margin="5,0,5,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <!--Triggers-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="Button.IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                        <Trigger Property="Button.IsEnabled" Value="false">
+                            <Setter TargetName="Tb_ProtectFile" Property="Foreground" Value="gray"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

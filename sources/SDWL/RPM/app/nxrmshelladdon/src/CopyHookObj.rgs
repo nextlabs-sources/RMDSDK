@@ -1,0 +1,50 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {6491a6be-92a4-451d-9cb5-81ead8343259} = s 'CopyHookObj class'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{3b8687f5-332a-4794-9fd6-bc9e23bfb8be}'
+			Version = s '1.0'
+		}
+	}
+
+	Directory
+	{
+		ShellEx
+		{
+			CopyHookHandlers
+			{
+				NXRMCopyHook = s '{6491a6be-92a4-451d-9cb5-81ead8343259}'
+			}
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove 'Shell Extensions'
+					{
+						NoRemove Approved
+						{
+							val '{6491a6be-92a4-451d-9cb5-81ead8343259}' = s 'NXRMShellAddon'
+						}
+					}
+				}
+			}
+		}
+	}
+}

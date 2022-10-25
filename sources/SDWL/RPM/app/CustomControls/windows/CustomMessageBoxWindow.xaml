@@ -1,0 +1,56 @@
+﻿<Window x:Class="CustomControls.windows.CustomMessageBoxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomControls.common.helper"
+        mc:Ignorable="d"
+        Height="250" Width="450"  WindowStartupLocation="CenterScreen" Closed="Window_Closed"
+        Title="{Binding MessageBoxTitle}" ResizeMode="NoResize">
+    <Window.Resources>
+        <local:UriToBitmapImageConverter x:Key="uri2Image"></local:UriToBitmapImageConverter>
+    </Window.Resources>
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <!--Icon and Message subject info-->
+        <StackPanel Grid.Row="0"  Orientation="Horizontal">
+            <Image Name="img_Icon" Source="{Binding ImagePath, Converter={StaticResource uri2Image}}" Margin="0,0,10,0"></Image>
+            <TextBlock Text="{Binding MessageSubjectText}" TextWrapping="Wrap" MaxWidth="400"
+                           FontWeight="Bold" Foreground="Black"></TextBlock>
+        </StackPanel>
+
+        <!--Details info-->
+        <TextBlock Name="Tb_Details" Grid.Row="1" Margin="0,10,0,0" Text="{Binding MessageBoxText}" TextWrapping="Wrap"
+                       LineHeight="20" Foreground="Gray"></TextBlock>
+
+        <Grid Grid.Row="3" >
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <!-- Positive button: default value is "OK"-->
+                <Button Name="Positive_Btn" Click="Positive_Btn_Click" Width="100" Height="30"
+                        Style="{StaticResource UnifiedBtnStyle_Positive}" 
+                        Visibility ="Collapsed">OK</Button>
+
+                <!--Neutral button: default value is "Neutral"-->
+                <Button Name="Neutral_Btn" Click="Neutral_Btn_Click" Width="100" Height="30" Margin="10,0,0,0"
+                        Visibility="Collapsed">Neutral</Button>
+
+                <!--Cancel button: default value is "Cancel"-->
+                <Button Name="Negative_Btn" Click="Negative_Btn_Click" Width="100" Height="30" Margin="10,0,0,0"
+                        Style="{StaticResource UnifiedBtnStyle_Negtive}"
+                        Visibility="Collapsed">Cancel</Button>
+
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</Window>

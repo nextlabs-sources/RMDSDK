@@ -1,0 +1,322 @@
+﻿<Window x:Class="CustomControls.windows.fileInfo.view.FileInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomControls.windows.fileInfo.view"
+        xmlns:centralrigthscontrol="clr-namespace:CustomControls.components"
+        xmlns:local_hepler="clr-namespace:CustomControls.windows.fileInfo.helper"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="{DynamicResource Windows_Defult_Title}" Height="590" MinWidth="800"  WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+        >
+
+    <Window.Resources>
+        <local_hepler:LocalFileRights2ResouceConverter x:Key="lr"></local_hepler:LocalFileRights2ResouceConverter>
+        <local_hepler:DisplayWaterMark2DisplayWaterMarkVisibilityConverter x:Key="dw"></local_hepler:DisplayWaterMark2DisplayWaterMarkVisibilityConverter>
+        <local_hepler:ListCount2BoolConverter x:Key="ListCountToBool"></local_hepler:ListCount2BoolConverter>
+        <local_hepler:ForegroundConverter x:Key="ForegroundConver"></local_hepler:ForegroundConverter>
+        <local_hepler:NameToBackground x:Key="NameToBackground"></local_hepler:NameToBackground>
+        <local_hepler:NameToForeground x:Key="NameToForeground"></local_hepler:NameToForeground>
+        <local_hepler:CheckoutFirstChar x:Key="CheckoutFirstChar"></local_hepler:CheckoutFirstChar>
+        <local_hepler:ValidityHidenProperty2ValidityVisiblitiyConverter x:Key="ValidityConverter"/>
+        <local_hepler:ShareWithCount2StringConverter x:Key="swcs"></local_hepler:ShareWithCount2StringConverter>
+        <local_hepler:OriginalFileVisibilityConverter x:Key="OriginalFileConver"></local_hepler:OriginalFileVisibilityConverter>
+        <local_hepler:LastModifyDateVisibilityConverter x:Key="LastModifyVisibiyConver"></local_hepler:LastModifyDateVisibilityConverter>
+        <local_hepler:ShareWithStringConverter x:Key="ShareWithTextConver"></local_hepler:ShareWithStringConverter>
+        <local_hepler:IsByCentrolPolicy2Visible x:Key="IsByCentrolPolicy2Visible"></local_hepler:IsByCentrolPolicy2Visible>
+        <!--<local_hepler:FileRightsToWrappedFileRights x:Key="FileRightsToWrappedFileRights"></local_hepler:FileRightsToWrappedFileRights>-->
+        <local_hepler:FileRights2Visible x:Key="FileRights2Visible"></local_hepler:FileRights2Visible>
+        <local_hepler:FormatFileSize x:Key="FormatFileSize"></local_hepler:FormatFileSize>
+        <local_hepler:FormatExpiration x:Key="FormatExpiration"></local_hepler:FormatExpiration>
+        <local_hepler:EmailUiVisibleConverter x:Key="EmailUiVisible"></local_hepler:EmailUiVisibleConverter>
+        <local_hepler:ProcessFileRights x:Key="PF"></local_hepler:ProcessFileRights>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed" />
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding  Key="Esc"  Command="ApplicationCommands.Close"></KeyBinding>
+    </Window.InputBindings>
+
+    <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="True"  >
+
+        <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Name}" FontSize="14" Margin="20,15,0,10" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+
+        <Grid DockPanel.Dock="Top"  HorizontalAlignment="Stretch" Margin="20,0,0,0" TextBlock.FontSize="14">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="{DynamicResource FileInfoWin_Size}" ></TextBlock>
+                <TextBlock Text="{Binding Path=Size, Converter={StaticResource FormatFileSize}}"  Margin="20,0,0,0"  FontWeight="Bold" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="40,0,0,0"
+                        Visibility="{Binding LastModified, Converter={StaticResource LastModifyVisibiyConver}}">
+
+                <TextBlock   Text="{DynamicResource FileInfoWin_Last_Modified}" HorizontalAlignment="Left"></TextBlock>
+                <TextBlock  Padding="5,0,0,0" Text="{Binding LastModified}"   HorizontalAlignment="Left" FontWeight="Bold" ></TextBlock>
+
+            </StackPanel>
+
+            <StackPanel Margin="0,10,0,0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                        Visibility="Collapsed">
+
+                <TextBlock Visibility="Visible"  Text="{DynamicResource FileInfoWin_Original_File}"  Grid.Column="0" ></TextBlock>
+
+                <TextBlock  Visibility="Visible" Margin="40,0,20,0"  Grid.Column="1" TextWrapping = "Wrap" 
+                            Text="{Binding Path=Path}"></TextBlock>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid DockPanel.Dock="Bottom" Margin="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Style="{StaticResource UnifiedBtnStyle_Positive}" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Bottom" 
+                    Command="ApplicationCommands.Close"        
+                    Content="{DynamicResource Windows_Btn_Close}" ></Button>
+
+        </Grid>
+
+        <Grid DockPanel.Dock="Top">
+           
+            <Grid  Visibility="{Binding Path=Emails.Count , Converter={StaticResource ListCountToBool}}" >
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Margin="20,20,0,0" FontSize="14" FontFamily="Lato"  FontWeight="Bold">
+                            <TextBlock  Text="{Binding FileMetadate, Converter={StaticResource ShareWithTextConver}}"></TextBlock>
+                            <TextBlock Text="{Binding Path=Emails.Count}"
+                                       Visibility="{Binding FileMetadate, Converter={StaticResource EmailUiVisible}}"> </TextBlock>
+                            <TextBlock Text="{Binding Path=Emails.Count,Converter={StaticResource swcs}}"
+                                       Visibility="{Binding FileMetadate, Converter={StaticResource EmailUiVisible}}"></TextBlock>              
+                          </TextBlock>
+
+                        <ItemsControl  Padding="20,0,0,0" ItemsSource="{Binding Emails}"
+                               MaxHeight="120" MaxWidth="800">
+                            <ItemsControl.Template>
+                                <ControlTemplate>
+                                    <Border
+                                    BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                    Padding="{TemplateBinding Control.Padding}"
+                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                    Background="{TemplateBinding Panel.Background}"
+                                    SnapsToDevicePixels="True">
+                                        <ScrollViewer Padding="{TemplateBinding Control.Padding}" VerticalScrollBarVisibility="Auto">
+                                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding 
+                                               UIElement.SnapsToDevicePixels}"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel></WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Margin="0,10,10,0"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center" 
+                                            BorderBrush="LightSlateGray"  
+                                            BorderThickness="1,1,1,1"
+                                            CornerRadius="3"
+                                            Padding="7,10,10,7">
+                                        <Grid VerticalAlignment="Top" >
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Ellipse  Grid.Column="0" Height="30" Width="30" 
+                                                      VerticalAlignment="Center" 
+                                                      HorizontalAlignment="Center"
+                                             Stroke="{Binding CurrentItem, Converter={StaticResource NameToBackground}}" 
+                                             Fill="{Binding CurrentItem, Converter={StaticResource NameToBackground}}">
+                                            </Ellipse>
+
+                                            <TextBlock  Grid.Column="0"  
+                                                        VerticalAlignment="Center" 
+                                                        HorizontalAlignment="Center"
+                                                        TextAlignment="Center" 
+                                                        Text="{Binding CurrentItem, Converter={StaticResource CheckoutFirstChar}}"
+                                                        Foreground="{Binding CurrentItem,Converter={StaticResource NameToForeground}}">
+                                            </TextBlock>
+
+                                            <!--<Image Grid.RowSpan="2" Grid.Column="0" Source="/rmc/resources/icons/ellipse_ab.png" Stretch="None"></Image>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Text="Andrew Baygulov" Padding="2" FontSize="10"></TextBlock>-->
+                                            <TextBlock  
+                                                Grid.Column="1"                                              
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center"
+                                                Text="{Binding }" 
+                                                Padding="5,0,0,0" 
+                                                FontSize="12" 
+                                                FontFamily="Segoe UI" 
+                                                >
+                                            </TextBlock>
+
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+
+
+            <Grid Visibility="{Binding Path=IsByCentrolPolicy ,Converter={StaticResource IsByCentrolPolicy2Visible}}">
+                <StackPanel  HorizontalAlignment="Center">
+                    <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold" Text="{DynamicResource Rights_Company_Defined}"></TextBlock>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"  Foreground="Gray" Text="{DynamicResource Rights_Company_Text}"></TextBlock>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0,10,0,0" MaxHeight="60">
+                        <!--<StackPanel  HorizontalAlignment="Left" 
+                                     Orientation="Vertical"
+                                     x:Name="TagsContainer">
+                        </StackPanel>-->
+                        <centralrigthscontrol:CentralTagView CentralTag="{Binding CentralTag}"/>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--ItemsSource="{Binding FileRights , Converter={StaticResource FileRightsToWrappedFileRights}}"-->
+        
+        <Grid>
+            <DockPanel  DockPanel.Dock="Top" Margin="0,10,0,10"  VerticalAlignment="Stretch" Background="#F2F2F2">
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Vertical" Margin="0,10,0,20">
+                    <TextBlock  HorizontalAlignment="Center" FontSize="17" FontWeight="DemiBold" Text="{DynamicResource Rights_Apply_Text}"></TextBlock>
+                </StackPanel>
+
+                <ItemsControl Margin="0,0,0,15" 
+                              DockPanel.Dock="Top" 
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              ItemsSource="{Binding FileRights, Converter={StaticResource PF}}"
+                    >
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+
+                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}" Padding="{TemplateBinding Control.Padding}" 
+                                    BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}"
+                                    SnapsToDevicePixels="True">
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Path=., Converter={StaticResource lr}}"  Height="90" Width="90" Margin="0,0,6,0"></Image>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <StackPanel DockPanel.Dock="Top" Width="700">
+                    <Line HorizontalAlignment="Center" X1="0" Y1="0" X2="700" Y2="0"  StrokeThickness="0.5" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+                </StackPanel>
+
+                <Grid HorizontalAlignment="Left" Margin="20,15,10,15" TextBlock.FontSize="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0"/>
+
+                    <!--<Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="{Binding ElementName=row_first, Path=ActualWidth}"  HorizontalAlignment="Stretch" Margin="20,10,20,15" BorderBrush="Gray" BorderThickness="2"></Separator>-->
+                    <!--<Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Width="{Binding ElementName=row_first, Path=ActualWidth}" Height="1"  Stroke="Gray"/>-->
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Visibility="{Binding Path=WaterMark , Converter={StaticResource dw} }" Text="{DynamicResource Label_WaterMark}"></TextBlock>
+                    <!--<TextBlock Margin="20,2,0,0" Grid.Row="0" Grid.Column="1" Foreground="Gray"  Visibility="{Binding Path=WaterMark , Converter={StaticResource dw}}" 
+                           Text="{Binding Path=WaterMark }"
+                           FontFamily="Lato" TextWrapping="Wrap" MaxWidth="405"></TextBlock>-->
+                    <TextBlock Name="tbWaterMark" Margin="20,2,0,0" Grid.Row="0" Grid.Column="1" Foreground="Gray"  Visibility="{Binding Path=WaterMark , Converter={StaticResource dw}}" 
+                           FontFamily="Lato" TextWrapping="Wrap" MaxWidth="405"></TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,5,0,0"  Padding="17,0,0,0" Visibility="{Binding Path=IsByCentrolPolicy ,Converter={StaticResource ValidityConverter}}" Text="{DynamicResource Label_Validity}"></TextBlock>
+
+                    <StackPanel Orientation="Horizontal" Margin="20,7,0,0" Grid.Row="1" Grid.Column="1" Visibility="{Binding Path=IsByCentrolPolicy ,Converter={StaticResource ValidityConverter}}">
+                        <TextBlock  Foreground="{Binding Path=Expiration , Converter={StaticResource ForegroundConver}}"
+                                FontFamily="Lato" Text="{Binding Path=Expiration , Converter={StaticResource FormatExpiration}}"></TextBlock>
+                        <TextBlock  Visibility="Hidden" Margin="10,0,0,0" Foreground="#2D9CDB" TextDecorations="Underline" Text="{DynamicResource FileInfoWin_Request_Validity}"></TextBlock>
+                    </StackPanel>
+
+                </Grid>
+
+            </DockPanel>
+
+            <DockPanel 
+                   Visibility="{Binding Path=FileRights.Count , Converter={StaticResource FileRights2Visible}}"
+                   DockPanel.Dock="Top" Margin="0,10,0,10"  
+                   VerticalAlignment="Stretch"
+                   Background="#F2F2F2">
+
+                <Grid  Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="True" DockPanel.Dock="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Width="50"
+                              Grid.Row="0"
+                              Grid.Column="0"
+                              UseLayoutRounding="True"
+                              SnapsToDevicePixels="True"
+                              RenderOptions.BitmapScalingMode="HighQuality"
+                       Height="50"
+                      
+                       Source="/CustomControls;component/resources/icons/access_denied.png">
+                    </Image>
+
+
+                    <TextBlock Margin="5,0,0,0" Grid.Row="0" VerticalAlignment="Center" Grid.Column="1" FontSize="30" Foreground="Black" FontWeight="DemiBold" Text="{DynamicResource FileInfoWin_Access_Denied}"></TextBlock>
+
+                    <TextBlock Margin="5,0,0,0" 
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               VerticalAlignment="Center"
+                               FontSize="13" 
+                               Text="{DynamicResource Exception_Sdk_Insufficient_Rights}">
+
+                    </TextBlock>
+                </Grid>
+
+            </DockPanel>
+        </Grid>
+    </DockPanel>
+
+
+</Window>

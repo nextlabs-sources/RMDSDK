@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\nudf">
+      <UniqueIdentifier>{f2dd79f8-8b8d-426a-9da4-f81cd2e72718}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nudf">
+      <UniqueIdentifier>{5afc3df5-f880-4884-856e-77828064df9e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\crypto.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\conversion.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\debug.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\eh.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\filesys.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\http_client.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\http_server.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\json.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\security.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\service.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\string.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\time.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\uri.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\winutil.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\xml.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+    <ClCompile Include="crypto_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nudf_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="json_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="security_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="string_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="time_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uri_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xml_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="conv_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="error_handling_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filesys_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="misc_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_aes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_rsa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_sha.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\http_service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crypto_cert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\crc.cpp">
+      <Filter>Source Files\nudf</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\nudf\crypto.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\conversion.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\debug.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\eh.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\filesys.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\handyutil.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\http_client.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\http_server.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\json.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\security.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\service.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\string.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\time.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\uri.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\winutil.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\xml.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\http_service.hpp">
+      <Filter>Header Files\nudf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_md5.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_rsa.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_sha.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_aes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_common.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\nudf\crypto_cert.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

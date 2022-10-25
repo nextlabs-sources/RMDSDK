@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="CustomControls.officeUserControl.FileInfoEx"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.officeUserControl"
+             xmlns:components="clr-namespace:CustomControls.components"
+             xmlns:rightsView="clr-namespace:CustomControls.components.RightsDisplay"
+             mc:Ignorable="d" 
+             d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <components:RightsStPanViewVisibilityConvert x:Key="RSViewVisibilityConver"/>
+    </UserControl.Resources>
+
+        <Grid Margin="0,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" ></RowDefinition>
+                <!--Separator line-->
+                <RowDefinition Height="5" ></RowDefinition>
+                <!--tags display-->
+                <RowDefinition Height="Auto" ></RowDefinition>
+                <!--Separator line-->
+                <RowDefinition Height="5" ></RowDefinition>
+                <!--rights display-->
+                <RowDefinition Height="*" ></RowDefinition>
+                <!--ConfirmBtn-->
+                <RowDefinition Height="Auto" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,10,0,5" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Width="60" Height="60" Source="{Binding Icon}"/>
+                <TextBox Grid.Column="1" Margin="10,0,0,0" Height="25" FontFamily="Lato" FontSize="13" FontWeight="Normal"
+                     IsReadOnly="True" VerticalContentAlignment="Center" Text="{Binding FilePath}" ToolTip="{Binding FilePath}"/>
+            </Grid>
+
+            <Separator Grid.Row="1" Background="LightGray" Visibility="{Binding CentralSpVisible}"/>
+
+            <StackPanel  Grid.Row="2" Margin="10" Orientation="Vertical" Visibility="{Binding CentralSpVisible}">
+                <TextBlock FontSize="13" FontFamily="Lato" Foreground="#828282" TextWrapping="Wrap"
+                       Text="{Binding CentralText}"/>
+                <components:CentralTagView Height="110" Margin="0,10,0,0" TagMaxWidth="{Binding TagViewMaxWidth}" CentralTag="{Binding CentralTag}" />
+        </StackPanel>
+
+            <Separator Grid.Row="3" Background="LightGray" />
+
+            <StackPanel  Grid.Row="4" Margin="10" Orientation="Vertical">
+                <TextBlock FontSize="13" FontFamily="Lato" Foreground="#828282" TextWrapping="Wrap"
+                       Text="{DynamicResource Rights_Apply_Text}"/>
+                <!--Rights Display-->
+                <rightsView:RightsStackPanle x:Name="RightsSp" Margin="0,10,0,0" Visibility="{Binding Path=Visibility,ElementName=accessDeny,Converter={StaticResource RSViewVisibilityConver}}"/>
+                <!--NoRights-->
+                <components:AccessDeniedView  x:Name="accessDeny" InfoText="{Binding AccessDenyText}" Visibility="{Binding AccessDenyVisibility}"/>
+            </StackPanel>
+
+            <!--Button-->
+            <StackPanel Height="25" Grid.Row="5" Margin="0,0,0,10" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button  Height="20" Command="local:FInfoEx_DataCommands.Modify" Visibility="{Binding ModifyBtnVisible}" Content="{DynamicResource Windows_Btn_Modify}"/>
+                <Button Margin="12,0,0,0" Width="80" Height="20" Command="local:FInfoEx_DataCommands.Cancel" Content="{DynamicResource Windows_Btn_Close}"/>
+            </StackPanel>
+        </Grid>
+</UserControl>

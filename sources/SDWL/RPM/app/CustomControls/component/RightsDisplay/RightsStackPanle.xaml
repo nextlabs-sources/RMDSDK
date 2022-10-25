@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="CustomControls.components.RightsDisplay.RightsStackPanle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.components.RightsDisplay.model"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="5" Focusable="False" SnapsToDevicePixels="True" Background="Transparent" Margin="3" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="#F2F3F5"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#34994C"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F2F3F5"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical" Background="#F2F2F2">
+        <ListBox ItemsSource="{Binding RightsList}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                 BorderBrush="#F2F3F5" Background="#F2F2F2" HorizontalAlignment="Center">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Focusable="False" Columns="{Binding RightsColumn}"/>
+                    <!--<WrapPanel Orientation="Horizontal"/>-->
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:RightsItem}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <!--When check all rights,why this listbox cann't full display compare other Page's listbox? To full display change Image Height and Width.(68 =>58)-->
+                        <Image Source="{Binding Path=Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="58" Width="58"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Rights}" FontFamily="Lato" FontSize="14" Foreground="Black"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--Divide line container-->
+        <StackPanel Name="DivideLine" HorizontalAlignment="Center" Margin="25,0,25,0"/>
+
+        <StackPanel x:Name="WatermarkPanel" Orientation="Horizontal" Margin="25,5,0,0" Visibility="{Binding WaterPanlVisibility}">
+            <TextBlock VerticalAlignment="Center" FontFamily="Lato" FontSize="12" Foreground="#494949" Text="{Binding WaterLabel}"/>
+            <TextBlock Margin="6,0,6,0" VerticalAlignment="Center" MaxWidth="405" 
+                       FontFamily="Lato" FontSize="12" TextWrapping="Wrap" Foreground="#828282" 
+                       Text="{Binding WatermarkValue}" ToolTip="{Binding WatermarkValue}"/>
+        </StackPanel>
+
+        <StackPanel Name="ValidityPanel" Orientation="Horizontal" Margin="25,4,0,11" Visibility="{Binding ValidityPanlVisibility}">
+            <TextBlock VerticalAlignment="Center" FontFamily="Lato" FontSize="12" Foreground="#494949" Padding="0,0,0,0" Text="{Binding ValidityLabel}"/>
+            <TextBlock Margin="6,0,6,0" VerticalAlignment="Center" 
+                       FontFamily="Lato" FontSize="12" Foreground="#828282" Text="{Binding ValidityValue}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

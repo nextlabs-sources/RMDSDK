@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="CESDK">
+      <UniqueIdentifier>{37b7c19b-b306-4ab0-a349-b53a4f576e51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client">
+      <UniqueIdentifier>{eb557f25-d7a5-44d8-a1c6-1cf19a059121}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub">
+      <UniqueIdentifier>{0976f844-57b4-4447-ba5a-0f4d2e9e6252}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEM">
+      <UniqueIdentifier>{88c01c95-e60d-4bad-a0fd-a0f87862cd88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CEM\src">
+      <UniqueIdentifier>{7d655350-2428-44c4-a9b1-450a9b82e8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CONN">
+      <UniqueIdentifier>{f7e69618-7bed-4e9b-b4e9-6d4a3ab41af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\CONN\src">
+      <UniqueIdentifier>{08d5d13d-1dba-4602-9d88-100551ccc6df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\EVAL">
+      <UniqueIdentifier>{bd0f2c83-ba51-49a3-8023-c11e67718717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\EVAL\src">
+      <UniqueIdentifier>{1fceebe2-033e-4b5a-9f0e-7a6579f3bbfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\PEPMan">
+      <UniqueIdentifier>{37b1f93f-40db-44de-bb40-259dd4e805dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CESDK\client\stub\PEPMan\src">
+      <UniqueIdentifier>{cc4326df-8a89-49b9-8694-d6f19d24c8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Marshal">
+      <UniqueIdentifier>{2855d760-8bd5-4b10-803b-a3f3a8bee7cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transport">
+      <UniqueIdentifier>{bd572935-ea70-4d14-ab9e-3de831d956cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transport\src">
+      <UniqueIdentifier>{9edabe12-9903-4563-a31c-19b05ef58b30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nxrmserv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="policy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="profile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="serv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="serv_core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="serv_flt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="key_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vhd_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rsapi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uploadserv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="upgrade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="diag.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logactivity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\CESDK\client\stub\CEM\src\cestring.cpp">
+      <Filter>CESDK\client\stub\CEM\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\CESDK\client\stub\CONN\src\conn.cpp">
+      <Filter>CESDK\client\stub\CONN\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\CESDK\client\stub\EVAL\src\eval.cpp">
+      <Filter>CESDK\client\stub\EVAL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\CESDK\client\stub\PEPMan\src\PEPMan.cpp">
+      <Filter>CESDK\client\stub\PEPMan\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\Marshal\src\marshal.cpp">
+      <Filter>Marshal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\Transport\src\transport.cpp">
+      <Filter>Transport\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\Common\stringex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\SDWRmcLib\PDP\pdp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="networkstate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="registry_service_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\inc\nxrmserv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\serv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\session.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\profile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\policy.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\config.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\process.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\global.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\serv_core.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\serv_flt.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\vhd_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\key_manager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\rsapi.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\uploadserv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\upgrade.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\diag.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\logactivity.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\SDWRmcLib\Common\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\SDWRmcLib\Common\string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\SDWRmcLib\Common\stringex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\SDWRmcLib\PDP\pdp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\inc\networkstate.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="registry_service_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="nxrmserv.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\main.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="nxrmserv.manifest" />
+  </ItemGroup>
+</Project>

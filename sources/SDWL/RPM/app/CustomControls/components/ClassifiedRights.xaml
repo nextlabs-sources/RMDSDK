@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="CustomControls.components.ClassifiedRights"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.components"
+             xmlns:rights="clr-namespace:CustomControls.components.RightsDisplay"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:RightsStPanViewVisibilityConvert x:Key="RSViewVisibilityConver"/>
+
+        <FontFamily x:Key="Lato">/CustomControls;component/resources/font/#Lato</FontFamily>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <!--Tag Display-->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="100" Margin="{Binding CentralTagScrollViewMargin}">
+                <local:CentralTagView TagMaxWidth="{Binding TagViewMaxWidth}" CentralTag="{Binding CentralTag}"/>
+            </ScrollViewer>
+            
+            <StackPanel Margin="0,22,0,0" Background="#F2F2F2" Visibility="{Binding RightsDisplayVisibility}">
+                <TextBlock Margin="0,17,0,0" HorizontalAlignment="Center" FontSize="16" FontFamily="{StaticResource Lato}" FontWeight="DemiBold" 
+                           LineHeight="20" Foreground="#4F4F4F"
+                           Text="{Binding RightsApplyDesc}"/>
+                <!--Rights Display-->
+                <rights:RightsStackPanle x:Name="RightsSp" Margin="0,22,0,17" FontFamily="{StaticResource Lato}" Visibility="{Binding Path=Visibility,ElementName=accessDeny,Converter={StaticResource RSViewVisibilityConver}}"/>
+                <!--NoRights-->
+                <local:AccessDeniedView x:Name="accessDeny" Margin="0,35,0,0" FontFamily="{StaticResource Lato}" InfoText="{Binding AccessDenyText}" Visibility="{Binding AccessDenyVisibility}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

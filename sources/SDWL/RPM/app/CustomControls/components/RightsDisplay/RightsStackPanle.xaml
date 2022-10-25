@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="CustomControls.components.RightsDisplay.RightsStackPanle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControls.components.RightsDisplay.model"
+             xmlns:helper="clr-namespace:CustomControls.components.RightsDisplay.helper"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <helper:LineVisibleConverter x:Key="LineVisibleConvert"/>
+        <helper:ForegroundConverter x:Key="ForegroundConvert"/>
+
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="5" Focusable="False" SnapsToDevicePixels="True" Background="Transparent" Margin="3" CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Border" Property="Background" Value="#F2F3F5"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#34994C"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F2F3F5"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical" Background="#F2F2F2">
+        <ListBox ItemsSource="{Binding RightsList}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 PreviewMouseWheel="ListBox_PreviewMouseWheel"
+                 BorderBrush="#F2F3F5" Background="#F2F2F2" HorizontalAlignment="Center">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Focusable" Value="False"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Focusable="False" Columns="{Binding RightsColumn}"/>
+                    <!--<WrapPanel Orientation="Horizontal"/>-->
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:RightsItem}">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <!--When check all rights,why this listbox cann't full display compare other Page's listbox? To full display change Image Height and Width.(68 =>58)-->
+                        <Image Source="{Binding Path=Icon}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="68" Width="68"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Rights}" FontSize="14" Foreground="Black"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <!--Divide line container-->
+        <Line Margin="25,16,25,10" X1="0" X2="1000" Y1="0" Y2="0" Stroke="#BDBDBD" StrokeThickness="2">
+            <Line.Visibility>
+                <MultiBinding Converter="{StaticResource LineVisibleConvert}">
+                    <Binding Path="WaterPanlVisibility"/>
+                    <Binding Path="ValidityPanlVisibility"/>
+                </MultiBinding>
+            </Line.Visibility>
+        </Line>
+
+        <StackPanel x:Name="WatermarkPanel" Orientation="Horizontal" Margin="25,6,0,0" Visibility="{Binding WaterPanlVisibility}">
+            <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="#494949" Text="{Binding WaterLabel}"/>
+            <!--<TextBlock Margin="6,0,6,0" VerticalAlignment="Center" MaxWidth="405" 
+                       FontSize="12" TextWrapping="Wrap" Foreground="#828282" 
+                       Text="{Binding WatermarkValue}" ToolTip="{Binding WatermarkValue}"/>-->
+            <TextBlock Name="tbWaterMark" Margin="6,0,6,0" VerticalAlignment="Center" MaxWidth="405" 
+                       FontSize="12" TextWrapping="Wrap" Foreground="#828282"/>
+        </StackPanel>
+
+        <StackPanel Name="ValidityPanel" Orientation="Horizontal" Margin="25,6,0,0" Visibility="{Binding ValidityPanlVisibility}">
+            <TextBlock VerticalAlignment="Center" FontSize="12" Foreground="#494949" Padding="0,0,0,0" Text="{Binding ValidityLabel}"/>
+            <TextBlock Margin="6,0,6,0" VerticalAlignment="Center" FontSize="12" 
+                       Foreground="{Binding ValidityValue, Converter={StaticResource ForegroundConvert}}" 
+                       Text="{Binding ValidityValue}"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

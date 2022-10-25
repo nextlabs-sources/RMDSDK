@@ -1,0 +1,387 @@
+﻿<Window x:Class="ServiceManager.ServiceManagerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:ServiceManager"
+        xmlns:local_convert ="clr-namespace:ServiceManager.rmservmgr.ui.windows.serviceManager.helper"
+        xmlns:local_components="clr-namespace:ServiceManager.rmservmgr.ui.components"
+        mc:Ignorable="d"
+        Title="ServiceManagerWin" AllowsTransparency="True" 
+        WindowStyle="None" Height="450" Width="400" 
+        WindowStartupLocation="Manual" 
+        Loaded="Window_Loaded"
+        KeyUp="Window_KeyUp"
+        Activated="Window_Activated"
+        Deactivated="Window_Deactivated"
+        SnapsToDevicePixels="True" ShowInTaskbar="False">
+
+    <!--Define some window res here -->
+    <Window.Resources>
+        <local_convert:NetworkStatusBool2ShortLineImageConverter x:Key="NetStatus2ShortLine"/>
+        <local_convert:NetworkStatusBool2LongLineImageConverter x:Key="NetStatus2LongLine"/>
+        <local_convert:NetworkStatusBool2StringForeground x:Key="NetStatus2StrForeground"/>
+        <local_convert:NetworkStatusBool2StringInfo x:Key="NetStatus2String"/>
+        <local_convert:NoMatchTextBlockVisibilityConvert x:Key="NoMatchVisibilityConvert"/>
+        <local_convert:CheckAllVisibilityConvert x:Key="CheckAllVisibilityConvert"/>
+        <local_convert:FilterOrClearBtnIsEnableConvert x:Key="FilterOrClearBtnConvert"/>
+        <local_convert:FilterOkBtnIsEnable x:Key="FilterOkBtnConvert"/>
+        <local_convert:NotifyListFileStatusIconConvert x:Key="NotifyListFileStatusIconConvert"/>
+        <local_convert:NotifyListFileIconConvert x:Key="NotifyListFileIconConvert"/>
+        <local_convert:NotifyListAppTextLongConvert x:Key="NotifyListAppTextConvert"/>
+        <local_convert:DateTimeConvert x:Key="DateTimeConvert"/>
+
+        <DataTemplate x:Key="ListBoxItemDataTemplateEx">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--status icon-->
+                <Image Margin="10,0,0,0" Grid.RowSpan="2" Grid.Column="0" Width="20" Height="20">
+                    <Image.Source>
+                        <MultiBinding Converter="{StaticResource NotifyListFileStatusIconConvert}">
+                            <Binding Path="Result"/>
+                            <Binding Path="FileStatus"/>
+                        </MultiBinding>
+                    </Image.Source>
+                </Image>
+                
+                <!--file icon-->
+                <Image Margin="0,0,10,0" Grid.RowSpan="2" Grid.Column="1" Width="30" Height="30">
+                    <Image.Source>
+                        <MultiBinding Converter="{StaticResource NotifyListFileIconConvert}">
+                            <Binding Path="Target"/>
+                            <Binding Path="Result"/>
+                        </MultiBinding>
+                    </Image.Source>
+                </Image>
+                
+                <!--application&target-->
+                <TextBlock Margin="0,0,10,0" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                                                       TextTrimming="CharacterEllipsis" SnapsToDevicePixels="True" FontSize="12px" FontFamily="Segoe UI">
+                                                <TextBlock FontWeight="DemiBold" Text="{Binding Application,Converter={StaticResource NotifyListAppTextConvert},StringFormat=[{0}]}" 
+                                                           ToolTip="{Binding Application}"/>
+                                                <Run Text="{Binding Target}" ToolTip="{Binding Target}"/>
+                                            </TextBlock>
+                <!--message-->
+                <TextBlock Margin="0,0,10,0" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Left"  VerticalAlignment="Center" 
+                                                       Foreground="#707071" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" SnapsToDevicePixels="True" FontSize="11px" FontFamily="Ebrima"
+                                                       Height="30" Text="{Binding Message}" ToolTip="{Binding Message}"/>
+                <!--dateTime-->
+                <TextBlock Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                       Foreground="#A4A4A4" FontSize="10px" 
+                                                       Text="{Binding DateTime, Converter={StaticResource DateTimeConvert}}"/>
+                <!--item_delete-->
+                <Button x:Name="item_delete" Margin="5" Grid.RowSpan="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                    Width="12" Height="12"
+                                                    Content="/resources/icons/cancel-gray@2x.png" Visibility="Collapsed"
+                                                    Command="{Binding DataContext.WindowCommand, RelativeSource={RelativeSource AncestorType=local:ServiceManagerWin}}"
+                                                    CommandParameter="Cmd_DeleteNotifyItem"
+                                                    Style="{StaticResource ResourceKey=YellowButton}"/>
+            </Grid>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBoxItem}}}"
+                             Value="true">
+                    <Setter TargetName="item_delete" Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        
+        <Style x:Key="ListBoxItemContainStyle" TargetType="{x:Type ListBoxItem}" >
+            <Setter Property="Margin" Value="0,0,0,0"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="{TemplateBinding Background}" Padding="0,5,0,0">
+                            <ContentPresenter />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="Background" Value="#3D26A0DA"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="#1F26A0DA"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="LightSlateGray"  BorderThickness="1,1,1,1"  >
+
+        <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" LastChildFill="True"  >
+
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" UseLayoutRounding="True" >
+                <!--Title-->
+                <Grid UseLayoutRounding="True" Background="#EEEEEE" Height="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--User icon-->
+                    <Ellipse Margin="10" Grid.Column="0" Grid.RowSpan="2" Height="30" Width="30"
+                             Stroke="{Binding AvatarBackground}" Fill="{Binding AvatarBackground}"/>
+                    
+                    <TextBlock Margin="5" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               TextAlignment="Center" Text="{Binding AvatarText}" Foreground="{Binding AvatarTextColor}"/>
+                    
+                    <!--User name-->
+                    <TextBlock Margin="0" Grid.Column="1" Grid.RowSpan="2" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left"
+                               Text="{Binding UserName}" TextWrapping="NoWrap" TextAlignment="Left" TextTrimming="CharacterEllipsis" FontWeight="Bold"/>
+                    
+                    <!--Desktop btn-->
+                    <Button Margin="0,10,0,6" Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                            Content="/resources/icons/open_mainWin_menu.png" 
+                            Visibility="{Binding OpenRmdVisibility}"
+                            Command="{Binding WindowCommand}" CommandParameter="Cmd_OpenSkyDrmDesktop"
+                            Style="{StaticResource ResourceKey=YellowButton}"
+                            ToolTip="{DynamicResource ServiceManageWin_Btn_Open_SkyDRM}" />
+                    
+                    <!--Web btn-->
+                    <Button Margin="5,8,0,8"  Grid.Column="3" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            Content="/resources/icons/open_browse_web.png"
+                            Command="{Binding WindowCommand}" CommandParameter="Cmd_OpenSkyDrmWeb"
+                            Style="{StaticResource ResourceKey=YellowButton}"
+                            ToolTip="{DynamicResource ServiceManageWin_Btn_Open_Skydrm_Web}"/>
+                    
+                    <!--Menu btn-->
+                    <Button x:Name="btnMenu" Margin="0,8,0,8" Grid.Column="5" Grid.RowSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" 
+                            Command="{Binding WindowCommand}" CommandParameter="Cmd_OpenMenu"
+                            ToolTip="{DynamicResource ServiceManageWin_Menu_Options}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Grid>
+                                    <Border Name="Border" BorderBrush="#F5D350" BorderThickness="1" CornerRadius="3" Visibility="Hidden">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#FDEEB3" Offset="0"/>
+                                                <GradientStop Color="#FDE690" Offset="0.3"/>
+                                                <GradientStop Color="#FDEEAE" Offset="0.56"/>
+                                                <GradientStop Color="#FFFFFF" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                    </Border>
+                                    <Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Rectangle.Fill>
+                                            <ImageBrush Stretch="None" ImageSource="/resources/icons/open_menu.png" >
+                                                <ImageBrush.RelativeTransform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.8" ScaleY="0.8"/>
+                                                    </TransformGroup>
+                                                </ImageBrush.RelativeTransform>
+                                                <ImageBrush.Transform>
+                                                    <TransformGroup>
+                                                        <ScaleTransform />
+                                                        <SkewTransform/>
+                                                        <RotateTransform/>
+                                                        <TranslateTransform/>
+                                                    </TransformGroup>
+                                                </ImageBrush.Transform>
+                                            </ImageBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="Button.IsMouseOver" Value="true">
+                                        <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                                    </Trigger>
+                                    <Trigger Property="Button.IsPressed" Value="true">
+                                        <Setter TargetName="Border" Property="Visibility" Value="Visible"></Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.ContextMenu >
+                            <ContextMenu Name="contextMenu">
+                                <MenuItem Name="munu_about" Header="{DynamicResource ServiceManageWin_contextMenu_Header_About}"
+                                          Command="{Binding WindowCommand}" CommandParameter="Cmd_MenuItemAbout"/>
+
+                                <MenuItem Name="munu_help" Header="{DynamicResource ServiceManageWin_contextMenu_Header_Help}"
+                                          Command="{Binding WindowCommand}" CommandParameter="Cmd_MenuItemHelp" Visibility="{Binding OpenRmdVisibility}"/>
+
+                                <MenuItem Name="munu_feend_feedback" Header="{DynamicResource ServiceManageWin_contextMenu_Header_Feedback}" Visibility="Collapsed"/>
+
+                                <MenuItem Name="munu_preferences" Header="{DynamicResource ServiceManageWin_contextMenu_Header_Preferences}"
+                                          Command="{Binding WindowCommand}" CommandParameter="Cmd_MenuItemPreference"/>
+
+                                <MenuItem Name="munu_logout" Header="{DynamicResource ServiceManageWin_contextMenu_Header_Log_out}"
+                                          Command="{Binding WindowCommand}" CommandParameter="Cmd_MenuItemLogout"/>
+
+                            </ContextMenu>
+                        </Button.ContextMenu>
+                    </Button>
+                </Grid>
+                
+                <!--NetworkStatus-->
+                <Grid  UseLayoutRounding="True" VerticalAlignment="Center"  Background="#EEEEEE">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!--short line image-->
+                    <Image Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                           Stretch="UniformToFill" Height="2"
+                           Source="{Binding IsNetworkAvailable, Converter={StaticResource NetStatus2ShortLine}}"/>
+                    <!--online or offline text-->
+                    <TextBlock Grid.Column="1" Margin="2,0,2,0" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                Foreground="{Binding IsNetworkAvailable, Converter= {StaticResource NetStatus2StrForeground}}"
+                                Text="{Binding IsNetworkAvailable, Converter= {StaticResource NetStatus2String}}"/>
+                    <!--long line image-->
+                    <Image Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                           Stretch="UniformToFill" Height="2"
+                           Source="{Binding IsNetworkAvailable, Converter={StaticResource NetStatus2LongLine}}"/>
+                </Grid>
+
+                <!--Notification-->
+                <Grid VerticalAlignment="Center" Background="#E6E6E6" Height="28">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Notification title-->
+                    <TextBlock Margin="10,0,0,0" Grid.Column="0" VerticalAlignment="Center" 
+                               FontSize="13px" FontFamily="Roboto" FontWeight="DemiBold"
+                               Foreground="#333333" Text="{DynamicResource ServiceManageWin_Notification_Title}"/>
+                    
+                    <!--https://stackoverflow.com/questions/361209/how-to-open-a-wpf-popup-when-another-control-is-clicked-using-xaml-markup-only-->
+                    <StackPanel Margin="5,0,15,0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                        <!--Filter btn-->
+                        <ToggleButton Name="filter_btn" Cursor="Hand" Foreground="#64ACFF"
+                                      IsEnabled="{Binding CopyAppList.Count, Converter={StaticResource FilterOrClearBtnConvert}}"
+                                      Command="{Binding WindowCommand}" CommandParameter="Cmd_OpenFilter">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <TextBlock x:Name="fBtn_tB" FontSize="12px" FontWeight="DemiBold" Text="{DynamicResource ServiceManageWin_Filter_Btn}"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter TargetName="fBtn_tB" Property="Foreground" Value="#C1C1C1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <Popup IsOpen="{Binding IsChecked, ElementName=filter_btn}" StaysOpen="False">
+                            <Border Background="#F2F2F2" Width="250">
+                                <Grid Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <DockPanel Grid.Row="0" Margin="0,0,0,10" LastChildFill="True">
+                                        <TextBlock Foreground="#6E6E6E" FontWeight="DemiBold" Text="{DynamicResource ServiceManageWin_Filter_Btn}"/>
+                                        <local_components:CustomSearchBox x:Name="searchBox" Margin="5,0,0,0" VerticalAlignment="Center">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="SearchEvent">
+                                                    <local_convert:MyEventCommand Command="{Binding SearchCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </local_components:CustomSearchBox>
+                                    </DockPanel>
+
+                                    <Border Grid.Row="1" BorderBrush="#D1D1D1" BorderThickness="1"  Background="White">
+                                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxWidth="225" MaxHeight="150">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Margin="12,5,5,5" Text="{DynamicResource ServiceManageWin_Filter_NoMatches}"
+                                                         Visibility="{Binding ApplicationList.Count, Converter={StaticResource NoMatchVisibilityConvert}}"/>
+                                                <CheckBox Margin="12,5,5,5" Content="{Binding IsAllCheckedText}" IsChecked="{Binding IsAllChecked}"
+                                                         Visibility="{Binding ApplicationList.Count, Converter={StaticResource CheckAllVisibilityConvert}}"
+                                                         Command="{Binding WindowCommand}" CommandParameter="Cmd_CheckedAll"/>
+                                                <ListBox x:Name="app_ListBox" HorizontalContentAlignment="Stretch" BorderThickness="0"
+                                                         ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                         ItemsSource="{Binding ApplicationList}">
+                                                    <ListBox.ItemContainerStyle>
+                                                        <Style TargetType="{x:Type ListBoxItem}">
+                                                            <Setter Property="Margin" Value="5"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                                        <CheckBox Margin="5" Content="{Binding Application}" IsChecked="{Binding IsChecked}" 
+                                                                          Command="{Binding DataContext.WindowCommand, RelativeSource={RelativeSource AncestorType=local:ServiceManagerWin}}"
+                                                                          CommandParameter="Cmd_CheckedItem"/>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ListBox.ItemContainerStyle>
+                                                </ListBox>
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Border>
+                                    
+                                    <StackPanel Grid.Row="2" Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button Width="60"
+                                                Command="{Binding WindowCommand}" CommandParameter="Cmd_FilterOk"
+                                                IsEnabled="{Binding IsAllChecked, Converter={StaticResource FilterOkBtnConvert}}"
+                                                Visibility="{Binding ApplicationList.Count, Converter={StaticResource CheckAllVisibilityConvert}}"
+                                                Content="{DynamicResource ServiceManageWin_Filter_OkBtn}"/>
+                                        <Button Width="60" Margin="10,0,0,0"
+                                                Command="{Binding WindowCommand}" CommandParameter="Cmd_FilterCancel"
+                                                Content="{DynamicResource ServiceManageWin_Filter_CancelBtn}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </Popup>
+                        <!--|-->
+                        <Rectangle Margin="5,0,5,0" Width="0.7" Stroke="#989898"/>
+                        <!--Clear all btn-->
+                        <Button FontSize="12px" FontWeight="DemiBold" Foreground="#64ACFF" Cursor="Hand"
+                                IsEnabled="{Binding NotifyList.Count, Converter={StaticResource FilterOrClearBtnConvert}}"
+                                Command="{Binding WindowCommand}" CommandParameter="Cmd_ClearNotifyList">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock x:Name="clearBtn_tB" Text="{DynamicResource ServiceManageWin_Clear_Btn}" />
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter TargetName="clearBtn_tB" Property="Foreground" Value="#C1C1C1"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        
+                    </StackPanel>
+                </Grid>
+                
+                <!--display select items-->
+                <Grid VerticalAlignment="Center" Background="#CDCDCD" Height="20">
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="12px" Foreground="#5B5B5B" TextTrimming="CharacterEllipsis"
+                               Text="{Binding IsCheckedAppItem}" ToolTip="{Binding IsCheckedAppItem}"/>
+                </Grid>
+            </StackPanel>
+
+            <!--No notifications text-->
+            <TextBlock DockPanel.Dock="Top" Margin="0,120,0,0" FontFamily="Segoe UI" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Visibility="{Binding NotifyList.Count, Converter={StaticResource NoMatchVisibilityConvert}}"
+                       Text="{DynamicResource ServiceManageWin_No_notifications}"/>
+            
+            <!--Notification list-->
+            <ListBox x:Name="nt_LsBx" HorizontalContentAlignment="Stretch" BorderThickness="0"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     Visibility="{Binding NotifyList.Count, Converter={StaticResource CheckAllVisibilityConvert}}"
+                     ItemsSource="{Binding NotifyList}" ItemTemplate="{StaticResource ListBoxItemDataTemplateEx}"
+                     ItemContainerStyle="{StaticResource ListBoxItemContainStyle}"/>
+
+        </DockPanel>
+    </Border>
+
+</Window>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="ServiceManager.rmservmgr.ui.windows1.LoginWindowEx"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ServiceManager.rmservmgr.ui.windows"
+        xmlns:UserControl="clr-namespace:ServiceManager.rmservmgr.ui.widgets"
+        mc:Ignorable="d"
+        Closed="Window_Closed" 
+        Title="SkyDRM" Height="600" Width="1000" WindowStartupLocation="CenterScreen">
+    <Grid Name="topGrid">
+        <!-- Add chromium browser control in C# code-->
+    </Grid>
+</Window>

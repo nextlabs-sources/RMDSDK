@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="global_data_model.cpp" />
+    <ClCompile Include="osrmx.cpp" />
+    <ClCompile Include="hook.cpp">
+      <Filter>hook</Filter>
+    </ClCompile>
+    <ClCompile Include="filedialog.cpp">
+      <Filter>hook</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>misc</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>misc</Filter>
+    </ClCompile>
+    <ClCompile Include="overlay.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk.cpp">
+      <Filter>sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="config.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="registry_whitelist.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="droptarget.cpp">
+      <Filter>hook</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="global_data_model.h" />
+    <ClInclude Include="osrmx.h" />
+    <ClInclude Include="hook.h">
+      <Filter>hook</Filter>
+    </ClInclude>
+    <ClInclude Include="filedialog.h">
+      <Filter>hook</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>misc</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>misc</Filter>
+    </ClInclude>
+    <ClInclude Include="overlay.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="registry_whitelist.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="droptarget.h">
+      <Filter>hook</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="hook">
+      <UniqueIdentifier>{2f559932-8a88-4f39-a4d8-c602dcd80315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="misc">
+      <UniqueIdentifier>{b03617c0-a7cb-49a0-9b1c-ac728f60ef30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{ce31af98-385f-4a99-87b1-488818add575}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdk">
+      <UniqueIdentifier>{7448de1e-1928-4090-b772-fafe4bac6c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{651def1c-c1af-4521-93b7-528fce8c64fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="nxosrmx.rc" />
+  </ItemGroup>
+</Project>

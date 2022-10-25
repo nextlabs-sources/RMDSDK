@@ -1,0 +1,185 @@
+﻿<Page x:Class="CustomControls.componentPages.Preference.RpmFolderP"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CustomControls.componentPages.Preference"
+      xmlns:sortList="clr-namespace:CustomControls.common.sortListView"
+      xmlns:layoutList="clr-namespace:CustomControls.common.listViewLayoutManager"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600"
+      Title="RpmFolderP">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Margin="0,0,0,0" Orientation="Vertical">
+            <TextBlock Margin="10,0,0,0" FontSize="18" FontFamily="Segoe UI"
+                   HorizontalAlignment="Left"
+                   Text="{DynamicResource RpmP_UserRPM_Default}" />
+            <TextBlock Margin="10,0,0,10" FontSize="14" FontFamily="Segoe UI" Foreground="Gray"
+                   HorizontalAlignment="Left" TextWrapping="Wrap"
+                   Text="{DynamicResource RpmP_UserRPM_Describe}" />
+            <StackPanel  Background="#E5E5E5" Orientation="Vertical">
+                <TextBlock Margin="10,10,0,0" FontSize="13" FontFamily="Segoe UI" Foreground="Gray" 
+                           Text="{DynamicResource RpmP_UserRPM_Choose}"/>
+                <Grid Margin="10,10,0,10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--file's folder-->
+
+                    <TextBox Grid.Column="0" IsReadOnly="False">
+                        <TextBox.Template>
+                            <ControlTemplate TargetType="TextBox">
+                                <Grid>
+                                    <Rectangle x:Name="rec" Fill="White" Opacity="0.8" Stroke="Gray"/>
+                                    <TextBox x:Name="tbx_content" Margin="5,0,20,0" Foreground="Gray" Background="Transparent" 
+                                             VerticalAlignment="Center" BorderThickness="0"
+                                             FontFamily="Lato" FontSize="13" 
+                                             TextChanged="Tbx_content_TextChanged"
+                                             Text="{Binding RPMpath}" ToolTip="{Binding RPMpath}"/>
+                                    <Button x:Name="clearBtn" Margin="0,0,5,0" Cursor="Hand" HorizontalAlignment="Right" Click="ClearBtn_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Grid>
+                                                    <Image Source="/CustomControls;component/resources/icons/cancel-gray@3x.png" Stretch="None" />
+                                                    <ContentPresenter/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger SourceName="tbx_content" Property="Text" Value="" >
+                                        <Setter TargetName="clearBtn" Property="Visibility" Value="Collapsed"/>
+                                    </Trigger>
+                                    <Trigger SourceName="clearBtn" Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="rec"  Property="Stroke" Value="#F9E080"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </TextBox.Template>
+                    </TextBox>
+
+                    <!--change dest-->
+                    <Button Grid.Column="1" Margin="20,5,20,5" Width="100"  Content="{DynamicResource RpmP_UserRPM_Browse}"  
+                            Command="local:RpmP_DataCommands.Browse"/>
+                </Grid>
+            </StackPanel>
+            
+            <StackPanel Margin="0,10,10,10" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="10,0,0,10" Width="120" VerticalAlignment="Bottom" 
+                    Command="local:RpmP_DataCommands.Apply"
+                    IsEnabled="{Binding BtnApplyIsEnable}"
+                    Content="{DynamicResource RpmP_Btn_Apply}"
+                    Style="{StaticResource UnifiedBtnStyle_Positive}" />
+
+                <Button Margin="10,0,0,10" Width="120" VerticalAlignment="Bottom" 
+                    Command="local:RpmP_DataCommands.Cancel"
+                    Content="{DynamicResource RpmP_Btn_Cancle}"
+                    Style="{StaticResource UnifiedBtnStyle_Negtive}" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1"  Orientation="Vertical">
+            <TextBlock Margin="10,0,0,0" FontSize="18" FontFamily="Segoe UI"
+                   HorizontalAlignment="Left"
+                   Text="{DynamicResource RpmP_ManageRPM_Title}" />
+            <TextBlock Margin="10,0,0,10" FontSize="14" FontFamily="Segoe UI" Foreground="Gray"
+                   HorizontalAlignment="Left" TextWrapping="Wrap"
+                   Text="{DynamicResource RpmP_ManageRPM_Describe}" />
+            
+            <ListView Margin="10,0,10,0" Height="150" ItemsSource="{Binding FolderList}" 
+                  sortList:ListViewBehavior.HeaderSort="True"
+                  layoutList:ListViewLayoutManager.Enabled="True">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="50" 
+                                        layoutList:RangeColumn.MinWidth="50" 
+                                        layoutList:RangeColumn.MaxWidth="50">
+                            <!--<GridViewColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsCheckedAll}" Checked="AllCheckBox_Checked_UnChecked"
+                                          Unchecked="AllCheckBox_Checked_UnChecked"/>
+                                </DataTemplate>
+                            </GridViewColumn.HeaderTemplate>-->
+                            <GridViewColumn.Header>
+                                <Grid>
+                                    <CheckBox IsChecked="{Binding IsCheckedAll}" Checked="AllCheckBox_Checked_UnChecked"
+                                          Unchecked="AllCheckBox_Checked_UnChecked"/>
+                                </Grid>
+                                
+                            </GridViewColumn.Header>
+
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Margin="11,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                              IsChecked="{Binding IsChecked}" 
+                                              Checked="CheckBox_Checked_UnChecked"
+                                              Unchecked="CheckBox_Checked_UnChecked"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="100"
+                                    sortList:ListViewBehavior.SortField="Name"
+                                    layoutList:RangeColumn.MinWidth="100">
+                            <GridViewColumnHeader HorizontalContentAlignment="Left" 
+                                                  Height="25" Padding="8,0,0,0"
+                                                  Content="{DynamicResource RpmP_List_Column_Name}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Width="20" Height="20" Source="{Binding Icon}"/>
+                                        <TextBlock Grid.Column="1"  FontSize="12" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" 
+                                                   Text="{Binding FolderName}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="300"
+                                        layoutList:RangeColumn.MinWidth="300">
+                            <GridViewColumnHeader HorizontalContentAlignment="Left" 
+                                                  Height="25" Padding="8,0,0,0"
+                                                  Content="{DynamicResource RpmP_List_Column_Path}"/>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock FontSize="12" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" 
+                                                   Text="{Binding FolderPath}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            <StackPanel Margin="0,10,10,10" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Margin="10,0,0,10" Width="120" VerticalAlignment="Bottom" 
+                    Command="local:RpmP_DataCommands.Reset"
+                    IsEnabled="{Binding BtnResetIsEnable}"
+                    Content="{DynamicResource RpmP_Btn_Reset}"
+                    Style="{StaticResource UnifiedBtnStyle_Positive}" />
+
+                <Button Margin="10,0,0,10" Width="120" VerticalAlignment="Bottom" 
+                    Command="local:RpmP_DataCommands.Cancel"
+                    Content="{DynamicResource RpmP_Btn_Cancle}"
+                    Style="{StaticResource UnifiedBtnStyle_Negtive}" />
+            </StackPanel>
+            
+        </StackPanel>
+        
+    </Grid>
+</Page>
